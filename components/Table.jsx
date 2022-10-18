@@ -1,80 +1,64 @@
-/*
-  This example requires Tailwind CSS v3.0+
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import {useLayoutEffect, useRef, useState} from 'react';
 
 const people = [
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com1',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com2',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com3',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com4',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com5',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com6',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com7',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com8',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com9',
     role: 'Member',
   },
   {
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
+    email: 'lindsay.walton@example.com10',
     role: 'Member',
   },
   // More people...
@@ -84,11 +68,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Table() {
+export default function Table({headers, responseData}) {
   const checkbox = useRef();
   const [checked, setChecked] = useState(false);
   const [indeterminate, setIndeterminate] = useState(false);
   const [selectedPeople, setSelectedPeople] = useState([]);
+
+  // const sortedHeaders = (arr) => {
+  //   return arr.map((header) => {
+  //     return header;
+  //   });
+  // };
+
+  // console.log(sortedHeaders(headers));
 
   useLayoutEffect(() => {
     const isIndeterminate =
@@ -155,36 +147,19 @@ export default function Table() {
                         onChange={toggleAll}
                       />
                     </th>
-                    <th
-                      scope="col"
-                      className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Title
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Email
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Role
-                    </th>
-                    <th
-                      scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
-                    >
-                      <span className="sr-only">Edit</span>
-                    </th>
+                    {headers
+                      .map((header) => {
+                        return (
+                          <th
+                            key={header}
+                            scope="col"
+                            className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                          >
+                            {header}
+                          </th>
+                        );
+                      })
+                      .slice(1)}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -233,14 +208,6 @@ export default function Table() {
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {person.role}
-                      </td>
-                      <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a
-                          href="#"
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Edit<span className="sr-only">, {person.name}</span>
-                        </a>
                       </td>
                     </tr>
                   ))}
