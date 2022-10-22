@@ -8,7 +8,7 @@ const link =
 
 // ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function Graph({sales, companyName}) {
+export default function Graph({}) {
   // const data = {
   //   labels: companyName,
   //   datasets: [
@@ -25,9 +25,9 @@ export default function Graph({sales, companyName}) {
   return (
     <div>
       {/* <Pie data={data} className="max-h-96" /> */}
-      <PieChart sales={sales} companyName={companyName} />
+      <PieChart />
       <DoughnutGraph />
-      <BarGraph sales={sales} companyName={companyName} />
+      <BarGraph />
     </div>
   );
 }

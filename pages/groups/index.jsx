@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 
-export default function HomePage() {
+export default function GroupIndex() {
   const [groups, setGroups] = useState([]);
 
   const url = 'https://opendata.hawaii.gov/api/3/action/group_list';
@@ -15,8 +15,6 @@ export default function HomePage() {
     fetchData(url);
   }, []);
 
-  console.log(groups, 'cat');
-
   return (
     <>
       <div>
@@ -24,7 +22,7 @@ export default function HomePage() {
         <ul>
           {groups.map((group) => {
             return (
-              <li>
+              <li key={group}>
                 <Link href={`/groups/${group}`}>
                   <a>{group}</a>
                 </Link>

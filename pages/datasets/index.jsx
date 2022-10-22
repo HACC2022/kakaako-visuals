@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import Link from 'next/link';
 
-export default function Datasets() {
+export default function DatasetsIndex() {
+  const dataRef = useRef('');
   const [datasets, setDatasets] = useState([]);
 
   const url = 'https://opendata.hawaii.gov/api/3/action/package_list';
@@ -15,24 +16,19 @@ export default function Datasets() {
     fetchData(url);
   }, []);
 
-  console.log(datasets, 'cat');
-
   return (
-    <>
-      <div>
-        <h1>All Datasets</h1>
-        <ul>
-          {datasets.map((set) => {
-            return (
-              <li>
-                <Link href={`/datasets/${set}`}>
-                  <a>{set}</a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </>
+    <nav className="h-full overflow-y-auto" aria-label="Directory">
+      <ul>
+        {datasets.map((set) => {
+          return (
+            <li key={set}>
+              <Link href={`/datasets/${set}`}>
+                <a>{set}</a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

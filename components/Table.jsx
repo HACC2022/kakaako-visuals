@@ -1,4 +1,5 @@
 import {useLayoutEffect, useRef, useState} from 'react';
+import Graph from './Graph';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -24,10 +25,12 @@ export default function Table({headers, responseData}) {
   //   setIndeterminate(false);
   // }
 
-  // console.log(maybe(responseData), 'dd');
+  console.log(headers, 'hhhhhhhh');
+  console.log(responseData, 'RD');
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
+      <Graph />
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Data</h1>
@@ -77,32 +80,32 @@ export default function Table({headers, responseData}) {
                         onChange={toggleAll}
                       />
                     </th> */}
-                    {headers
-                      .map((header) => {
-                        return (
-                          <th
-                            key={header}
-                            scope="col"
-                            className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
-                          >
-                            {header}
-                          </th>
-                        );
-                      })
-                      .slice(1)}
+                    {headers.map((header) => {
+                      return (
+                        <th
+                          key={header}
+                          scope="col"
+                          className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                        >
+                          {header}
+                        </th>
+                      );
+                    })}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {/* // iterate through response data
                       on every element I want to print the value or the corresponding key to the corrent column */}
                   {/* {responseData.map((el) => {
-                    return (
-                      <tr>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {el[0]._id}
-                        </td>
-                      </tr>
-                    );
+                    for (let key in el) {
+                      return (
+                        <tr>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            {key}
+                          </td>
+                        </tr>
+                      );
+                    }
                   })} */}
 
                   {/* {responseData.map((response) => (
