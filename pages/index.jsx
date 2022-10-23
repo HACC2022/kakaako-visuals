@@ -1,21 +1,16 @@
-import {useEffect, useState, Fragment} from 'react';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {thumbnails} from '../public/groupThumbs';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const groupUrl = 'https://opendata.hawaii.gov/api/3/action/group_list';
 
 export default function HomePage() {
   const [groups, setGroups] = useState([]);
-  const [dataset, setDataset] = useState('');
 
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.result);
+    console.log(data);
     setGroups(data.result);
   }
   useEffect(() => {

@@ -12,16 +12,17 @@ async function fetcher(url) {
 export default function GroupID() {
   const [groups, setGroups] = useState([]);
 
+  // const url = 'https://opendata.hawaii.gov/api/3/action/group_list';
   const url = 'https://opendata.hawaii.gov/api/3/action/group_list';
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data.result);
+    console.log(data.result);
     setGroups(data.result);
   }
   useEffect(() => {
     fetchData(url);
-    fetcher(test);
+    // fetcher(test);
   }, []);
 
   return (

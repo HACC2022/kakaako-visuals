@@ -25,8 +25,8 @@ export default function Graph({}) {
   return (
     <div>
       {/* <Pie data={data} className="max-h-96" /> */}
-      <PieChart />
-      <DoughnutGraph />
+      {/* <PieChart />
+      <DoughnutGraph /> */}
       <BarGraph />
     </div>
   );
