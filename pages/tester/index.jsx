@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import TableTest from '../../components/Table';
 
 export default function Tester() {
   async function testing() {
@@ -14,7 +15,7 @@ export default function Tester() {
   });
   return (
     <>
-      <p>Tester</p>
+      <TableTest />
     </>
   );
 }
