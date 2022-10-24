@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Pagination from './Pagination';
 import Loading from './Loading';
 
-export default function MainContainer() {
+export default function DatasetMain() {
   // All datasets returned from query
   const [datasets, setDatasets] = useState(undefined);
 

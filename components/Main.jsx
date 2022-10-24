@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import Table from './Table';
 import {useRouter} from 'next/router';
+import Graph from './Graph';
 
 export default function Main() {
   // Where all headers are stored
@@ -47,10 +48,12 @@ export default function Main() {
   }, [router.isReady]);
 
   return (
-    <main className="-mt-32">
-      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+    <main className="">
+      <div className="mx-auto max-w-7xl px-2 pb-12 sm:px-2 lg:px-2 ">
         <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-          <div className=" rounded-lg border-4 border-dashed border-gray-200"></div>
+          <div className=" rounded-lg border-4 border-dashed border-gray-200">
+            {/* <Graph /> */}
+          </div>
         </div>
         <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
           <div className="rounded-lg border-4 border-dashed border-gray-200">
