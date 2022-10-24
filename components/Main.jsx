@@ -14,7 +14,7 @@ export default function Main() {
   const link = `https://opendata.hawaii.gov/api/3/action/package_show?id=${pid}`;
 
   useEffect(() => {
-    if (!pid) {
+    if (!router.isReady) {
       return;
     } else {
       async function fetchData(url) {
@@ -43,7 +43,7 @@ export default function Main() {
 
       fetchData(link);
     }
-  }, [router]);
+  }, [router.isReady]);
 
   return (
     <main className="-mt-32">
