@@ -31,8 +31,15 @@ export const options = {
   },
 };
 
-export default function BarGraph({sales, companyName}) {
-  const labels = companyName;
+export default function BarGraph({
+  selectedGraphType,
+  setSelectedGraphType,
+  selectedCheckbox,
+  setSelectedCheckbox,
+  selectedColumn,
+  setSelectedColumn,
+}) {
+  const labels = selectedColumn;
   const data = {
     labels,
     datasets: [

@@ -1,5 +1,5 @@
-import PieChart from './charts/PieChart';
-import ScatterPlot from './charts/ScatterPlot';
+import PieChart from './PieChart';
+import ScatterPlot from './ScatterPlot';
 import {useEffect, useState} from 'react';
 
 export default function Graph({displayData}) {

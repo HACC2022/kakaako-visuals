@@ -23,6 +23,10 @@ export default function DatasetMain() {
     fetchData(link);
   }, [startPagination, endPagination]);
 
+  // const names = allDatasets.map((id) => {
+
+  // })
+
   if (!datasets) {
     return <Loading />;
   } else {

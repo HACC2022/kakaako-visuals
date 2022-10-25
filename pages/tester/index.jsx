@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import TableTest from '../../components/Table';
+import TableTest from '../../components/table/Table';
 
 export default function Tester() {
   async function testing() {
