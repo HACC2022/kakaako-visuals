@@ -17,6 +17,7 @@ export default function Main() {
   const link = `https://opendata.hawaii.gov/api/3/action/package_show?id=${pid}`;
 
   useEffect(() => {
+    console.log('ROUTERREADY???')
     if (!router.isReady) {
       return;
     } else {
@@ -41,6 +42,7 @@ export default function Main() {
 
         setHeaders(Object.keys(jsonData.value[0]));
         setResponseData(jsonData.value);
+        console.log('responsedataaaaa', jsonData)
       }
 
       fetchData(link);

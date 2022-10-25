@@ -21,7 +21,7 @@ export default function Table({headers, responseData}) {
     return (
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
-          {/* <Graph /> */}
+          <Graph displayData={responseData} headers={headers}/>
           <table className="min-w-full divide-y divide-gray-200 text-sm">
             <thead className="bg-gray-100">
               <tr>
