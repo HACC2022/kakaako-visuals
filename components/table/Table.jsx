@@ -20,6 +20,7 @@ export default function Table({headers, responseData, pid}) {
     <>
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
+          {/* <Graph displayData={responseData} headers={headers}/> */}
           <TableHeader
             pid={pid}
             headers={headers}

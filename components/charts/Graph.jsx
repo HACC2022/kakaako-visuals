@@ -2,19 +2,28 @@ import PieChart from './PieChart';
 import ScatterPlot from './ScatterPlot';
 import {useEffect, useState} from 'react';
 
-export default function Graph({displayData}) {
+export default function Graph({displayData, headers}) {
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
   //for Pie graph categories
   const [barLabels, setBarLabels] = useState([]);
   //for scatter graph x axis and y axis
-  const [xAxis, setXAxis] = useState([]);
-  const [yAxis, setYAxis] = useState([]);
+  const [xAxisOptions, setXAxisOptions] = useState([]);
+  const [xAxis, setXAxis] = useState('');
+  const [xAxisLabel, setXAxisLabel] = useState('')
+
+  const [yAxisOptions, setYAxisOptions] = useState([]);
+  const [yAxis, setYAxis] = useState('');
+  const [yAxisLabel, setYAxisLabel] = useState('')
+
+  //State for graph label
+  const [graphLabel, setGraphLabel] = useState('')
+
 
   //populate types of graph choices menu
   const types = ['Bar Graph', 'Pie Chart', 'Scatter Plot'];
   const typeHTML = [];
-  typeHTML.push(<option key="100">Select Type of Graph</option>);
+  typeHTML.push(<option value='select' key="100">Select Type of Graph</option>);
   for (let i = 0; i < types.length; i++) {
     typeHTML.push(
       <option value={types[i]} key={i}>
@@ -23,36 +32,71 @@ export default function Graph({displayData}) {
     );
   }
 
-  //populating Bar graph's label option
+  const graphDisplay = {
+    'Scatter Plot': <ScatterPlot graphLabel={graphLabel} xAxis={xAxis} yAxis={yAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} displayData={displayData}/>
+  
+  
+  }
+
+  //populating graph's label option
   useEffect(() => {
-    const labels = [];
+    //make the x and y axis option disappear first
+    const xDropdown = document.getElementById('xOptionsDiv'); 
+    const yDropdown = document.getElementById('yOptionsDiv');
+    xDropdown.style.display = 'none';
+    yDropdown.style.display = 'none';
+
+    //populate x axis dropdown options; 
+    const xAxisLabels = [];
     let key = 100;
-    for (const label in displayData[0]) {
-      console.log(label);
-      labels.push(
-        <option value={label} key={key}>
-          {label}
+    xAxisLabels.push(
+      <option value='select' key={99}>
+        Select X Axis
+      </option>
+    );
+    for (const xLabel of headers) {
+      xAxisLabels.push(
+        <option value={xLabel} key={key}>
+          {xLabel}
         </option>
       );
       key++;
     }
-    setBarLabels(labels);
-
-    const TESTTT = document.getElementById('barOptionsDiv');
-    TESTTT.style.display = 'none';
+    setXAxisOptions(xAxisLabels);
   }, [displayData]);
+
+  //populate Y Axis drop down options
+  useEffect(()=>{
+    const yAxisLabels = [];
+    let key = 200;
+    yAxisLabels.push(
+      <option value={'select'} key={199}>
+      Select Y Axis
+    </option>
+    )
+
+    for (const yLabel of headers){
+      if (yLabel !== xAxis){
+        yAxisLabels.push(
+          <option value={yLabel} key={key}>
+          {yLabel}
+        </option>
+        )
+        key++;
+      }
+    }
+    setYAxisOptions(yAxisLabels)
+    const yDropdown = document.getElementById('yOptionsDiv');
+    yDropdown.style.display = 'block';
+  }, [xAxis])
 
   //check the graph type every time it's changed. display different choices for each type
   useEffect(() => {
     console.log('in useeffect', graphType);
     let graphMenu = document.getElementById('graphMenu');
-    if (graphType === 'Bar Graph') {
-      const barType = document.createElement('p');
-      barType.setAttribute('id', 'test');
-      barType.innerHTML = 'TESTTINgggg';
-      graphMenu.appendChild(barType);
-    } else if (graphType === 'Pie Chart') {
-      console.log('inside pie');
+    if (graphType === 'Bar Graph' || graphType ==='Scatter Plot') {
+      const xDropdown = document.getElementById('xOptionsDiv'); 
+      xDropdown.style.display = 'block';
     }
   }, [graphType]);
 
@@ -60,25 +104,25 @@ export default function Graph({displayData}) {
     <>
       <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
         <div className=" rounded-lg border-4 border-dashed border-gray-200">
-          {/* <PieChart /> */}
-        </div>
-      </div>
-
-      <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-        <div className=" rounded-lg border-4 border-dashed border-gray-200">
-          {/* <Table /> */}
         </div>
         <div>
-          <ScatterPlot />
+          {graphDisplay[graphType]}
         </div>
       </div>
 
+      <label for='graphLabel'>Name the Graph</label>
+          <input type='text' id='gLabel'
+          onChange={()=>{
+            setGraphLabel(document.getElementById('gLabel').value)
+          }}></input>
+
+      {/* OPTIONS for the type of graph selection */}
       <div id="graphMenu">
         <label for="selectGraph">Type of Graph </label>
         <select
           id="graphType"
-          onChange={(e) =>
-            setGraphType((prevType) => {
+          onChange={() =>
+            setGraphType(() => {
               return document.getElementById('graphType').value;
             })
           }
@@ -86,15 +130,42 @@ export default function Graph({displayData}) {
           {typeHTML}
         </select>
 
-        {/* OPTIONS FOR BAR GRAPH */}
-        <div id="barOptionsDiv">
-          <select id="barOptions">{barLabels}</select>
-        </div>
-
-        {/* OPTIONS FOR GRAPHS require x and y axis */}
-        <div id="xyOptionsDiv">
+        {/* X AXIS DROP DOWN OPTIONS */}
+        <div id="xOptionsDiv">
           <label for="xAxis">x-Axis</label>
-          <select id="xOption"></select>
+          <select id="xOption"
+            onChange={()=>{
+              setXAxis(()=>{
+                return document.getElementById('xOption').value
+              })
+            }}>
+            {xAxisOptions}
+          </select>
+          {/* X AXIS LABELS OPTION */}
+          <label for='xAxisLabel'>Rename X Axis</label>
+          <input type='text' id='xLabel'
+          onChange={()=>{
+            setXAxisLabel(document.getElementById('xLabel').value)
+            console.log(xAxisLabel)
+          }}></input>
+        </div>
+        {/* Y AXIS DROP DOWN OPTIONS */}
+        <div id="yOptionsDiv">
+          <label for="yAxis">y-Axis</label>
+          <select id="yOption"
+            onChange={()=>{
+              setYAxis(()=>{
+                return document.getElementById('yOption').value
+              })
+            }}>
+            {yAxisOptions}
+          </select>
+          {/* Y AXIS LABELS OPTION */}
+          <label for='yAxisLabel'>Rename Y Axis</label>
+          <input type='text' id='yLabel'
+          onChange={()=>{
+            setYAxisLabel(document.getElementById('yLabel').value)
+          }} ></input>
         </div>
       </div>
     </>
