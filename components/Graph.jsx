@@ -1,13 +1,13 @@
 import PieChart from './charts/PieChart';
 import ScatterPlot from './charts/ScatterPlot';
-import {useEffect, useState} from 'react';
+import React from 'react';
+import {useEffect, useState, useRef, useCallback} from 'react';
 
 export default function Graph({displayData, headers}) {
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
-  //for Pie graph categories
-  const [barLabels, setBarLabels] = useState([]);
-  //for scatter graph x axis and y axis
+
+  //for graphs with x axis and y axis, and labels
   const [xAxisOptions, setXAxisOptions] = useState([]);
   const [xAxis, setXAxis] = useState('');
   const [xAxisLabel, setXAxisLabel] = useState('')
@@ -32,12 +32,13 @@ export default function Graph({displayData, headers}) {
     );
   }
 
+  //create References 
+ 
   const graphDisplay = {
     'Scatter Plot': <ScatterPlot graphLabel={graphLabel} xAxis={xAxis} yAxis={yAxis} xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} displayData={displayData}/>
   
   
   }
-
   //populating graph's label option
   useEffect(() => {
     //make the x and y axis option disappear first
@@ -48,9 +49,9 @@ export default function Graph({displayData, headers}) {
 
     //populate x axis dropdown options; 
     const xAxisLabels = [];
-    let key = 100;
+    let key = 102;
     xAxisLabels.push(
-      <option value='select' key={99}>
+      <option value='select' key={101}>
         Select X Axis
       </option>
     );
@@ -74,6 +75,7 @@ export default function Graph({displayData, headers}) {
       Select Y Axis
     </option>
     )
+    setXAxisLabel(xAxis)
 
     for (const yLabel of headers){
       if (yLabel !== xAxis){
@@ -89,6 +91,10 @@ export default function Graph({displayData, headers}) {
     const yDropdown = document.getElementById('yOptionsDiv');
     yDropdown.style.display = 'block';
   }, [xAxis])
+
+  useEffect(()=>{
+    setYAxisLabel(yAxis)
+  },[yAxis])
 
   //check the graph type every time it's changed. display different choices for each type
   useEffect(() => {
@@ -132,7 +138,7 @@ export default function Graph({displayData, headers}) {
 
         {/* X AXIS DROP DOWN OPTIONS */}
         <div id="xOptionsDiv">
-          <label for="xAxis">x-Axis</label>
+          <label for="xAxis">X-Axis</label>
           <select id="xOption"
             onChange={()=>{
               setXAxis(()=>{
@@ -145,13 +151,21 @@ export default function Graph({displayData, headers}) {
           <label for='xAxisLabel'>Rename X Axis</label>
           <input type='text' id='xLabel'
           onChange={()=>{
-            setXAxisLabel(document.getElementById('xLabel').value)
-            console.log(xAxisLabel)
-          }}></input>
+            setXAxisLabel(()=>{
+              // const labelValue = document.getElementById('xLabel').value;
+              // if (labelValue === ''){
+              //   return xAxis;
+              // }
+              // else {
+                return document.getElementById('xLabel').value
+            //   }
+            })
+          }
+        }></input>
         </div>
         {/* Y AXIS DROP DOWN OPTIONS */}
         <div id="yOptionsDiv">
-          <label for="yAxis">y-Axis</label>
+          <label for="yAxis">Y-Axis</label>
           <select id="yOption"
             onChange={()=>{
               setYAxis(()=>{
