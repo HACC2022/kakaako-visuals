@@ -42,10 +42,10 @@ export default function Graph({displayData, headers}) {
   //populating graph's label option
   useEffect(() => {
     //make the x and y axis option disappear first
-    const xDropdown = document.getElementById('xOptionsDiv'); 
-    const yDropdown = document.getElementById('yOptionsDiv');
-    xDropdown.style.display = 'none';
-    yDropdown.style.display = 'none';
+    // const xDropdown = document.getElementById('xOptionsDiv'); 
+    // const yDropdown = document.getElementById('yOptionsDiv');
+    // xDropdown.style.display = 'none';
+    // yDropdown.style.display = 'none';
 
     //populate x axis dropdown options; 
     const xAxisLabels = [];
@@ -88,8 +88,11 @@ export default function Graph({displayData, headers}) {
       }
     }
     setYAxisOptions(yAxisLabels)
+    if (xAxis !==''){
+      console.log('xAxis', xAxis)
     const yDropdown = document.getElementById('yOptionsDiv');
     yDropdown.style.display = 'block';
+    }
   }, [xAxis])
 
   useEffect(()=>{
@@ -137,7 +140,7 @@ export default function Graph({displayData, headers}) {
         </select>
 
         {/* X AXIS DROP DOWN OPTIONS */}
-        <div id="xOptionsDiv">
+        <div id="xOptionsDiv" style={{display:'none'}}>
           <label for="xAxis">X-Axis</label>
           <select id="xOption"
             onChange={()=>{
@@ -164,7 +167,7 @@ export default function Graph({displayData, headers}) {
         }></input>
         </div>
         {/* Y AXIS DROP DOWN OPTIONS */}
-        <div id="yOptionsDiv">
+        <div id="yOptionsDiv" style={{display:'none'}}>
           <label for="yAxis">Y-Axis</label>
           <select id="yOption"
             onChange={()=>{
