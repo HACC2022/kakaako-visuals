@@ -12,12 +12,14 @@ export default function DatasetMain() {
   const [endPagination, setEndPagination] = useState(30);
 
   // Querying for all datasets. Storing in state datasets
-  const link = 'https://opendata.hawaii.gov/api/3/action/package_list';
+  // const link = 'https://opendata.hawaii.gov/api/3/action/package_list';
+  const link = `https://opendata.hawaii.gov/api/3/action/package_search?rows=5000&start=${startPagination}`;
   useEffect(() => {
     async function fetchData(url) {
       const res = await fetch(url);
       const data = await res.json();
-      const allDatasets = data.result;
+      const allDatasets = data.result.results;
+      console.log(allDatasets);
       setDatasets(allDatasets);
     }
     fetchData(link);
@@ -34,9 +36,9 @@ export default function DatasetMain() {
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {datasets
-            .map((data) => (
+            .map(({title, name}) => (
               <div
-                key={data}
+                key={name}
                 className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
               >
                 <div className="flex-shrink-0">
@@ -47,11 +49,11 @@ export default function DatasetMain() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <Link href={`/datasets/${data}`}>
+                  <Link href={`/datasets/${name}`}>
                     <a className="focus:outline-none">
                       <span className="absolute inset-0" aria-hidden="true" />
                       <p className="text-sm font-medium text-gray-900">
-                        {data}
+                        {title}
                       </p>
                     </a>
                   </Link>

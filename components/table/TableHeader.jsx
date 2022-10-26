@@ -27,17 +27,17 @@ export default function TableHeader({
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
             {pid}
           </h2>
-          <RadioGroup
+          {/* <RadioGroup
             selectedGraphType={selectedGraphType}
             setSelectedGraphType={setSelectedGraphType}
-          />
+          /> */}
         </div>
         <div className="min-w-0 flex-1">
-          <Dropdown
+          {/* <Dropdown
             headers={headers}
             selectedColumn={selectedColumn}
             setSelectedColumn={setSelectedColumn}
-          />
+          /> */}
         </div>
         <div className="mt-4 flex md:mt-0 md:ml-4">
           <button
