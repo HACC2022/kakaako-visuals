@@ -1,11 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.bg-indigo-600{
-  background-color: #207fa1;
-}
-
-.bg-indigo-700 {
-  background-color: #367187;
-}
