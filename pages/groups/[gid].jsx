@@ -26,7 +26,7 @@ export default function GroupID() {
   if (!router.isReady) {
     return;
   } else {
-    console.log(groups);
+    // console.log(groups);
     return (
       <>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ export default function GroupID() {
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
+                      src={`/seal.png`}
                       alt="hawaii state crest"
                     />
                   </div>
