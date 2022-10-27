@@ -50,12 +50,8 @@ export default function Main() {
   }, [router.isReady]);
 
   return (
-    <div className="">
-      <div className="rounded-lg bg-white px-4 py-6 shadow sm:px-6">
-        <div className="rounded-lg border-4  border-gray-200">
-          <Table headers={headers} responseData={responseData} pid={pid} />
-        </div>
-      </div>
-    </div>
+    <>
+      <Table headers={headers} responseData={responseData} pid={pid} />
+    </>
   );
 }
