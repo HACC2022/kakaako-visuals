@@ -11,7 +11,7 @@ export default function GroupsIndex() {
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.result);
+    // console.log(data.result);
     setGroups(data.result);
   }
   useEffect(() => {

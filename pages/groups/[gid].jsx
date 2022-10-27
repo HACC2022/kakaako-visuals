@@ -8,6 +8,7 @@ export default function GroupID() {
   const {gid} = router.query;
 
   const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=groups:${gid}`;
+  // const link = `https://opendata.hawaii.gov/api/3/action/package_search?rows=1500&start=0`;
 
   useEffect(() => {
     if (!router.isReady) {
@@ -16,7 +17,7 @@ export default function GroupID() {
       async function fetchData(url) {
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data.result.results);
+        // console.log(data.result.results);
         setGroups(data.result.results);
       }
       fetchData(link);
