@@ -17,7 +17,7 @@ export default function GroupID() {
       async function fetchData(url) {
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data.result.results);
+        // console.log(data.result.results);
         setGroups(data.result.results);
       }
       fetchData(link);

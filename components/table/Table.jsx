@@ -1,17 +1,23 @@
 import {useState} from 'react';
 import TableHeader from './TableHeader';
-import Graph from '../charts/Graph';
+import Graph from '../Graph';
 
 export default function Table({headers, responseData, pid}) {
-  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+  // const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   const [selectedGraphType, setSelectedGraphType] = useState([]);
   const [selectedColumn, setSelectedColumn] = useState([]);
+  // const [xAxisLabel, setXAxisLabel] = useState('');
+  // const [yAxisLabel, setyAxisLabel] = useState('');
+
+  const selectedCheckbox = [];
 
   function handleSelectedCheckbox(e) {
     const checkedValue = e.target.value;
+    console.log(checkedValue, 'checkcheck');
 
     console.log(selectedCheckbox);
-    setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
+    selectedCheckbox.push(checkedValue);
+    // setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
   }
 
   if (!responseData) {
@@ -19,11 +25,16 @@ export default function Table({headers, responseData, pid}) {
   }
   return (
     <>
-      <div className="mx-auto max-w-7xl sm:px-2 lg:px-3">
-        <div className=" rounded-lg border-4 border-dashed border-gray-200 p-4 m-3"></div>
-        <div className=" rounded-lg border-4 border-dashed border-gray-200 p-4 m-3">
-          <Graph displayData={responseData} headers={headers} pid={pid} />
-          {/* <TableHeader
+      <div className="mx-auto max-w-7xl ">
+        <div className=" rounded-lg border-4  p-2 m-3">
+          <div>
+            <Graph
+              displayData={responseData}
+              headers={headers}
+              pid={pid}
+              selectedCheckbox={selectedCheckbox}
+            />
+            {/* <TableHeader
             pid={pid}
             headers={headers}
             selectedGraphType={selectedGraphType}
@@ -33,6 +44,7 @@ export default function Table({headers, responseData, pid}) {
             selectedColumn={selectedColumn}
             setSelectedColumn={setSelectedColumn}
           /> */}
+          </div>
           <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200 text-sm">
               <thead className="bg-gray-100">
@@ -94,7 +106,7 @@ export default function Table({headers, responseData, pid}) {
                 {/*////////////// Iterating through to pull values for table /////////////////*/}
                 {responseData.map((el, index) => {
                   const values = Object.values(el);
-                  // console.log(el, 'el');
+                  console.log(el, 'el');
                   for (let i = 0; i < values.length; i++) {
                     return (
                       <tr key={`${values[i]} ${index}`}>

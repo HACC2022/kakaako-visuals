@@ -35,7 +35,7 @@ export default function DatasetMain() {
       const res = await fetch(url);
       const data = await res.json();
       const allDatasets = data.result.results;
-      console.log(allDatasets);
+      // console.log(allDatasets);
       setDatasets(allDatasets);
     }
     fetchData(link);
