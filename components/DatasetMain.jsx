@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import Pagination from './Pagination';
 import Loading from './Loading';
+import Image from 'next/image';
 
 const formatObj = {
   CSV: 'https://icons.iconarchive.com/icons/icons8/ios7/256/Files-Csv-icon.png',
@@ -28,7 +29,7 @@ export default function DatasetMain() {
   const [resourcesArray, setResourcesArray] = useState();
 
   // Querying for all datasets. Storing in state datasets
-  const link = `https://opendata.hawaii.gov/api/3/action/package_search?rows=5000&start=${startPagination}`;
+  const link = `https://opendata.hawaii.gov/api/3/action/package_search?rows=2000&start=${startPagination}`;
 
   useEffect(() => {
     async function fetchData(url) {
@@ -41,18 +42,6 @@ export default function DatasetMain() {
     fetchData(link);
   }, [startPagination, endPagination]);
 
-  // function resources() {
-  //   return datasets.map((el) => {
-  //     return el.resources;
-  //   });
-  // }
-
-  // if (datasets) {
-  //   const resArray = resources();
-  //   console.log(resArray);
-  // }
-
-  // console.log(resourcesArray);
   if (!datasets) {
     return <Loading />;
   } else {
@@ -66,10 +55,11 @@ export default function DatasetMain() {
                 className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
               >
                 <div className="flex-shrink-0">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
-                    alt="hawaii state crest"
+                  <Image
+                    src={`/../public/seal.png`}
+                    width={80}
+                    height={80}
+                    alt="Hawaii state seal"
                   />
                 </div>
                 <div className="min-w-0 flex-1">

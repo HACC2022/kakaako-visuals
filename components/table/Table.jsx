@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Graph from '../Graph';
-// import Graph from '../OldGraph';
+import Loading from '../Loading';
 
 export default function Table({headers, responseData, pid}) {
   // const [selectedCheckbox, setSelectedCheckbox] = useState([]);
@@ -21,7 +21,7 @@ export default function Table({headers, responseData, pid}) {
   }
 
   if (!responseData) {
-    return;
+    return <Loading />;
   }
   return (
     <div className="mx-auto  ">
