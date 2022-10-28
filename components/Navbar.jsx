@@ -5,22 +5,17 @@ import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline';
 import {useAppContext} from '../pages/AppWrapper';
 import Link from 'next/link';
 import {useState, useEffect} from 'react';
+import Image from 'next/image';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
 const navigation = [
+  {name: 'Home', href: '/', current: false},
   {
     name: 'Datasets',
     href: '/datasets',
-    current: true,
+    current: false,
   },
   {name: 'Groups', href: '/groups', current: false},
   {name: 'Organizations', href: '/organizations', current: false},
-  // {name: 'Calendar', href: '#', current: false},
 ];
 
 function classNames(...classes) {
@@ -30,16 +25,8 @@ function classNames(...classes) {
 export default function Navbar() {
   const [inputText, setInputText] = useState('');
 
-  // const inputHandler = (e) => {
-  //   //convert input text to lower case
-  //   const lowerCase = e.target.value.toLowerCase();
-  //   setInputText(lowerCase);
-  // };
-
   const appContext = useAppContext();
   const {datasets} = appContext;
-
-  console.log(datasets);
 
   return (
     <Disclosure as="header" className="bg-gray-300 pb-3 mb-5">
@@ -49,10 +36,12 @@ export default function Navbar() {
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-14 w-auto"
+                  <Image
+                    className="block "
                     src="/seal.png"
                     alt="Your Company"
+                    height="60"
+                    width="60"
                   />
                 </div>
               </div>
@@ -71,7 +60,6 @@ export default function Navbar() {
                     <input
                       id="search"
                       name="search"
-                      // onChange={handleSearch}
                       className="block w-full rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-white sm:text-sm"
                       placeholder="Search"
                       type="search"
@@ -90,40 +78,7 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
-                {/* <button
-                  type="button"
-                  className="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button> */}
-
-                {/* Profile dropdown */}
-                {/* <Menu as="div" className="relative ml-4 flex-shrink-0">
-                  <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"></Menu.Items>
-                  </Transition>
-                </Menu> */}
-              </div>
+              <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center"></div>
             </div>
             <nav
               className="hidden lg:flex lg:space-x-8 lg:py-2"
@@ -165,25 +120,6 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
-            </div>
-            {/* <div className="border-t border-gray-700 pt-4 pb-3">
-              <div className="flex items-center px-4">
-                <div className="flex-shrink-0">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src={user.imageUrl}
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3">
-                  <div className="text-base font-medium text-white">
-                    {user.name}
-                  </div>
-                  <div className="text-sm font-medium text-gray-400">
-                    {user.email}
-                  </div>
-                </div>
-              </div>
             </div>
           </Disclosure.Panel>
         </>

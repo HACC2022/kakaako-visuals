@@ -18,8 +18,7 @@ export default function FillerDiv() {
       </svg>
       <span className="mt-2 block text-sm font-medium text-gray-900">
         Create a new graph
-      </span> */}
-      </div>
+      </span>
     </div>
   );
 }

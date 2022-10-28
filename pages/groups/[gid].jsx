@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import Image from 'next/image';
 
 export default function GroupID() {
   const [groups, setGroups] = useState([]);
@@ -38,10 +39,11 @@ export default function GroupID() {
                   className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
                 >
                   <div className="flex-shrink-0">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src={`/seal.png`}
-                      alt="hawaii state crest"
+                    <Image
+                      src="/../public/seal.png"
+                      width={80}
+                      height={80}
+                      alt="Hawaii state seal"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -56,7 +58,7 @@ export default function GroupID() {
                   </div>
                 </div>
               ))
-              .slice(0, 1000)}
+              .slice(0, 1500)}
           </div>
         </div>
       </>

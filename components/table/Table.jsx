@@ -3,12 +3,19 @@ import Graph from '../Graph';
 import Loading from '../Loading';
 
 export default function Table({headers, responseData, pid, datasets}) {
-  // const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   // const [selectedGraphType, setSelectedGraphType] = useState([]);
   // const [selectedColumn, setSelectedColumn] = useState([]);
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
 
+  // function getDatasetInfo(datasetPID){
+  //   for(let i = 0; i < datasets.length; i++){
+  //     if(datasets.name === pid)
+  //   }
+  // }
+
+  // console.log(responseData, 'RD');
   // const titleOfDataset = datasets.filter((word) => {
   //   if ((word.title = pid)) return word.title;
   // });
@@ -17,16 +24,26 @@ export default function Table({headers, responseData, pid, datasets}) {
   // }
   // console.log(datasets[0][0], 'datasets');
 
-  const selectedCheckbox = [];
+  // const selectedCheckbox = [];
 
   function handleSelectedCheckbox(e) {
     const checkedValue = e.target.value;
-    // console.log(checkedValue, 'checkcheck');
+    console.log(checkedValue, 'checkcheck');
     // const parsed = Object.entries(checkedValue);
 
+    for (let i = 0; i < responseData.length; i++) {
+      // console.log(
+      //   responseData[i],
+      //   'dsfjklasjdfklasjdflkasjflk;asjf;kljdakfjaks;ldfj;l'
+      // );
+      if (responseData[i]._id === Number(checkedValue)) {
+        setSelectedCheckbox((prevArray) => [...prevArray, responseData[i]]);
+      }
+    }
+
     // console.log(parsed, 'parsed');
-    selectedCheckbox.push(checkedValue);
-    // console.log(selectedCheckbox);
+    // selectedCheckbox.push(checkedValue);
+    console.log(selectedCheckbox);
     // setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
   }
 
@@ -108,8 +125,7 @@ export default function Table({headers, responseData, pid, datasets}) {
 
               <tbody className="divide-y divide-gray-200">
                 {/*////////////// Iterating through to pull values for table /////////////////*/}
-                {/* {console.log(responseData)}
-                {console.log(responseData[0])} */}
+
                 {responseData.map((obj, index) => {
                   const values = Object.values(obj);
 
@@ -124,12 +140,12 @@ export default function Table({headers, responseData, pid, datasets}) {
                             className="sr-only"
                             htmlFor={`Row ${index}`}
                           ></label>
-                          {/* {console.log(obj)} */}
+                          {/* {console.log(obj._id)} */}
                           <input
                             className="h-5 w-5 rounded border-gray-200"
                             type="checkbox"
                             id={`Row ${i}`}
-                            value={obj}
+                            value={obj._id}
                             onChange={handleSelectedCheckbox}
                             key={`input ${index}`}
                           />

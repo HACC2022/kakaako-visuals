@@ -29,33 +29,27 @@ export default function BarGraph({
   graphLabel,
   selectedCheckbox,
 }) {
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
-      },
-    },
-  };
-
-  const getXArray = selectedCheckbox.map((el) => {
-    return el[xAxisLabel];
+  const getXArray = selectedCheckbox.map((x) => {
+    return x[xAxisLabel];
+  });
+  const getYArray = selectedCheckbox.map((y) => {
+    return y[yAxisLabel];
   });
 
-  console.log(getXArray, 'xxx');
+  // console.log(getXArray, '🥶');
+  // console.log(getYArray, '🧶');
 
-  console.log(yAxis, 'yAxis');
-  console.log(xAxis, 'xAxis');
-  console.log(displayData, 'displayData');
-  console.log(xAxisLabel, 'xAxisLabel');
-  console.log(yAxisLabel, 'yAxisLabel');
-  console.log(graphName, 'graphName');
-  console.log(graphLabel, 'graphLabel');
-  console.log(selectedCheckbox, 'selectedCheckbox');
+  // console.log(yAxis, 'yAxis');
+  // console.log(xAxis, 'xAxis');
+  // console.log(displayData, 'displayData');
+  // console.log(xAxisLabel, 'xAxisLabel');
+  // console.log(yAxisLabel, 'yAxisLabel');
+  // console.log(graphName, 'graphName');
+  // console.log(graphLabel, 'graphLabel');
+  // console.log(selectedCheckbox, 'selectedCheckbox');
+
+  // TODO - Need to resolve issue with re-naming axis not re-rendering state.
+
   const labels = getXArray;
 
   const data = {
@@ -63,10 +57,27 @@ export default function BarGraph({
     datasets: [
       {
         label: graphLabel,
-        data: [0, 1, 2, 3, 4],
+        data: getYArray,
         backgroundColor: 'red',
       },
     ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        title: {
+          text: xAxisLabel,
+          display: true,
+        },
+      },
+      y: {
+        title: {
+          text: yAxisLabel,
+          display: true,
+        },
+      },
+    },
   };
 
   return <Bar options={options} data={data} className="max-h-96" />;

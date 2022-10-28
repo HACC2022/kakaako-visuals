@@ -14,7 +14,6 @@ export default function Graph({
   xAxisLabel,
   yAxisLabel,
   setYAxisLabel,
-
   setXAxisLabel,
 }) {
   //set state for the current graph type
@@ -59,6 +58,7 @@ export default function Graph({
         xAxisLabel={xAxisLabel}
         yAxisLabel={yAxisLabel}
         displayData={displayData}
+        selectedCheckbox={selectedCheckbox}
       />
     ),
     'Bar Graph': (
@@ -80,6 +80,7 @@ export default function Graph({
         xAxisLabel={xAxisLabel}
         yAxisLabel={yAxisLabel}
         displayData={displayData}
+        selectedCheckbox={selectedCheckbox}
       />
     ),
     Doughnut: (
@@ -90,6 +91,7 @@ export default function Graph({
         xAxisLabel={xAxisLabel}
         yAxisLabel={yAxisLabel}
         displayData={displayData}
+        selectedCheckbox={selectedCheckbox}
       />
     ),
   };
