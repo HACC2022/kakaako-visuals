@@ -20,7 +20,7 @@ export default function AppWrapper({children}) {
     fetchData(link);
   }, []);
 
-  let sharedState = {
+  const sharedState = {
     cat: 'cat',
     datasets: datasets,
     setDatasets: setDatasets,

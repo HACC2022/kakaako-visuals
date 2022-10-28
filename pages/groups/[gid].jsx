@@ -63,15 +63,3 @@ export default function GroupID() {
     );
   }
 }
-
-// <ul>
-//   {groups.map(({title, name}) => {
-//     return (
-//       <li key={title} value={title}>
-//         <Link href={`/datasets/${name}`}>
-//           <a>{title}</a>
-//         </Link>
-//       </li>
-//     );
-//   })}
-// </ul>

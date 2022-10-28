@@ -22,10 +22,7 @@ export default function Table({headers, responseData, pid}) {
     // setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
   }
 
-  if (responseData === undefined) {
-    {
-      console.log('loading');
-    }
+  if (!responseData & !pid) {
     return <Loading />;
   } else {
     return (
