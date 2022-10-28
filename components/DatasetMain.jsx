@@ -68,7 +68,7 @@ export default function DatasetMain() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-10 w-10 rounded-full"
-                    src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
+                    src={`/seal.png`}
                     alt="hawaii state crest"
                   />
                 </div>

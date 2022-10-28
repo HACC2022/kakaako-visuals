@@ -134,7 +134,7 @@ export default function ScatterPlot({
 
   return (
     <div>
-      <Scatter ref={ref} options={options} data={data} />
+      <Scatter ref={ref} options={options} data={data} className="max-h-96"/>
       <button type="button" onClick={downloadImage}>
         Download
       </button>

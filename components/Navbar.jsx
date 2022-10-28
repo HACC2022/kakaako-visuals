@@ -20,11 +20,11 @@ const navigation = [
   {name: 'Organizations', href: '/organizations', current: false},
   // {name: 'Calendar', href: '#', current: false},
 ];
-const userNavigation = [
-  {name: 'Your Profile', href: '#'},
-  {name: 'Settings', href: '#'},
-  {name: 'Sign out', href: '#'},
-];
+// const userNavigation = [
+//   {name: 'Your Profile', href: '#'},
+//   {name: 'Settings', href: '#'},
+//   {name: 'Sign out', href: '#'},
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -32,7 +32,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="header" className="bg-gray-300 pb-3 mb-5">
+    <Disclosure as="header" className="bg-gradient-to-b from-gray-300 pb-3 mb-5">
       {({open}) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-700 lg:px-8">
@@ -40,8 +40,8 @@ export default function Navbar() {
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    className="block h-14 w-auto"
+                    src="/seal.png"
                     alt="Your Company"
                   />
                 </div>
@@ -80,16 +80,16 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
-                <button
+                {/* <button
                   type="button"
                   className="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                </button> */}
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-4 flex-shrink-0">
+                {/* <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
@@ -127,7 +127,7 @@ export default function Navbar() {
                       ))}
                     </Menu.Items>
                   </Transition>
-                </Menu>
+                </Menu> */}
               </div>
             </div>
             <nav
@@ -162,7 +162,7 @@ export default function Navbar() {
                   className={classNames(
                     item.current
                       ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      : 'text-black-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md py-2 px-3 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
@@ -171,7 +171,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="border-t border-gray-700 pt-4 pb-3">
+            {/* <div className="border-t border-gray-700 pt-4 pb-3">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <img
@@ -195,8 +195,8 @@ export default function Navbar() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-              </div>
-              <div className="mt-3 space-y-1 px-2">
+              </div> */}
+              {/* <div className="mt-3 space-y-1 px-2">
                 {userNavigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
@@ -207,8 +207,8 @@ export default function Navbar() {
                     {item.name}
                   </Disclosure.Button>
                 ))}
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </Disclosure.Panel>
         </>
       )}

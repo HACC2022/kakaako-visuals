@@ -69,5 +69,5 @@ export default function BarGraph({
     ],
   };
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} className="max-h-96" />;
 }

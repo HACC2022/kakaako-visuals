@@ -26,7 +26,7 @@ export default function Table({headers, responseData, pid}) {
   return (
     <div className="mx-auto  ">
       <div className=" rounded-lg border-4  p-2 m-3">
-        <div>
+  
           <Graph
             displayData={responseData}
             pid={pid}
@@ -38,7 +38,7 @@ export default function Table({headers, responseData, pid}) {
             selectedColumn={selectedColumn}
             setSelectedColumn={setSelectedColumn}
           />
-        </div>
+        
         <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
           <table className="min-w-full divide-y divide-gray-200 text-sm">
             <thead className="bg-gray-100">
