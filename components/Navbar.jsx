@@ -50,8 +50,8 @@ export default function Navbar() {
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    className="block h-14 w-auto"
+                    src="/seal.png"
                     alt="Your Company"
                   />
                 </div>
@@ -91,16 +91,16 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
-                <button
+                {/* <button
                   type="button"
                   className="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                </button> */}
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-4 flex-shrink-0">
+                {/* <Menu as="div" className="relative ml-4 flex-shrink-0">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
@@ -122,7 +122,7 @@ export default function Navbar() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"></Menu.Items>
                   </Transition>
-                </Menu>
+                </Menu> */}
               </div>
             </div>
             <nav
@@ -157,7 +157,7 @@ export default function Navbar() {
                   className={classNames(
                     item.current
                       ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      : 'text-black-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md py-2 px-3 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
@@ -166,7 +166,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="border-t border-gray-700 pt-4 pb-3">
+            {/* <div className="border-t border-gray-700 pt-4 pb-3">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <img
