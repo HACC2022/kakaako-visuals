@@ -2,12 +2,20 @@ import {useState} from 'react';
 import Graph from '../Graph';
 import Loading from '../Loading';
 
-export default function Table({headers, responseData, pid}) {
+export default function Table({headers, responseData, pid, datasets}) {
   // const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   // const [selectedGraphType, setSelectedGraphType] = useState([]);
   // const [selectedColumn, setSelectedColumn] = useState([]);
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
+
+  // const titleOfDataset = datasets.filter((word) => {
+  //   if ((word.title = pid)) return word.title;
+  // });
+  // if (datasets) {
+  //   console.log(datasets[0]);
+  // }
+  // console.log(datasets[0][0], 'datasets');
 
   const selectedCheckbox = [];
 
@@ -18,16 +26,16 @@ export default function Table({headers, responseData, pid}) {
 
     // console.log(parsed, 'parsed');
     selectedCheckbox.push(checkedValue);
-    console.log(selectedCheckbox);
+    // console.log(selectedCheckbox);
     // setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
   }
 
-  if (!responseData & !pid) {
+  if (!datasets && !pid) {
     return <Loading />;
   } else {
     return (
       <div className="mx-auto  ">
-        {console.log('main function')}
+        {console.log('datasets', datasets)}
         <div className=" rounded-lg border border-4  p-2 m-3">
           <Graph
             displayData={responseData}
@@ -38,6 +46,7 @@ export default function Table({headers, responseData, pid}) {
             setXAxisLabel={setXAxisLabel}
             yAxisLabel={yAxisLabel}
             setYAxisLabel={setYAxisLabel}
+            datasets={datasets}
           />
 
           <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
@@ -99,8 +108,8 @@ export default function Table({headers, responseData, pid}) {
 
               <tbody className="divide-y divide-gray-200">
                 {/*////////////// Iterating through to pull values for table /////////////////*/}
-                {console.log(responseData)}
-                {console.log(responseData[0])}
+                {/* {console.log(responseData)}
+                {console.log(responseData[0])} */}
                 {responseData.map((obj, index) => {
                   const values = Object.values(obj);
 
@@ -115,7 +124,7 @@ export default function Table({headers, responseData, pid}) {
                             className="sr-only"
                             htmlFor={`Row ${index}`}
                           ></label>
-                          {console.log(obj)}
+                          {/* {console.log(obj)} */}
                           <input
                             className="h-5 w-5 rounded border-gray-200"
                             type="checkbox"

@@ -7,7 +7,7 @@ export default function GroupID() {
   const router = useRouter();
   const {gid} = router.query;
 
-  const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=groups:${gid}`;
+  const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=groups:${gid}&rows=1000&start=0`;
 
   useEffect(() => {
     if (!router.isReady) {
@@ -56,7 +56,7 @@ export default function GroupID() {
                   </div>
                 </div>
               ))
-              .slice(0, 10)}
+              .slice(0, 1000)}
           </div>
         </div>
       </>

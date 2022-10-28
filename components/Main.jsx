@@ -3,7 +3,7 @@ import Table from './table/Table';
 import Loading from './Loading';
 import {useRouter} from 'next/router';
 
-export default function Main() {
+export default function Main({datasets}) {
   // Where all headers are stored
   const [headers, setHeaders] = useState([]);
 
@@ -50,13 +50,16 @@ export default function Main() {
     }
   }, [router.isReady]);
 
-  if (!responseData) {
+  if (!datasets && !router.isReady) {
     return <Loading />;
   } else {
     return (
-      <>
-        <Table headers={headers} responseData={responseData} pid={pid} />
-      </>
+      <Table
+        headers={headers}
+        responseData={responseData}
+        pid={pid}
+        datasets={datasets}
+      />
     );
   }
 }

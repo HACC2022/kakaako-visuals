@@ -2,7 +2,9 @@ import {Fragment} from 'react';
 import {Disclosure, Menu, Transition} from '@headlessui/react';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline';
+import {useAppContext} from '../pages/AppWrapper';
 import Link from 'next/link';
+import {useState, useEffect} from 'react';
 
 const user = {
   name: 'Tom Cook',
@@ -26,6 +28,19 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const [inputText, setInputText] = useState('');
+
+  // const inputHandler = (e) => {
+  //   //convert input text to lower case
+  //   const lowerCase = e.target.value.toLowerCase();
+  //   setInputText(lowerCase);
+  // };
+
+  const appContext = useAppContext();
+  const {datasets} = appContext;
+
+  console.log(datasets);
+
   return (
     <Disclosure as="header" className="bg-gray-300 pb-3 mb-5">
       {({open}) => (
@@ -56,6 +71,7 @@ export default function Navbar() {
                     <input
                       id="search"
                       name="search"
+                      // onChange={handleSearch}
                       className="block w-full rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-white sm:text-sm"
                       placeholder="Search"
                       type="search"
