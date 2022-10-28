@@ -40,6 +40,7 @@ export default function Pagination({
         >
           Next
         </button>
+        s
       </div>
     </nav>
   );

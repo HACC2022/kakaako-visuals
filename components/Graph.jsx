@@ -6,18 +6,28 @@ import {useEffect, useState, useRef, useCallback} from 'react';
 import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 
-export default function Graph({displayData, headers, pid, selectedCheckbox}) {
+export default function Graph({
+  displayData,
+  headers,
+  pid,
+  selectedCheckbox,
+  xAxisLabel,
+  yAxisLabel,
+  setYAxisLabel,
+
+  setXAxisLabel,
+}) {
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
 
   //for graphs with x axis and y axis, and labels
   const [xAxisOptions, setXAxisOptions] = useState([]);
   const [xAxis, setXAxis] = useState('');
-  const [xAxisLabel, setXAxisLabel] = useState('');
+  // const [xAxisLabel, setXAxisLabel] = useState('');
 
   const [yAxisOptions, setYAxisOptions] = useState([]);
   const [yAxis, setYAxis] = useState('');
-  const [yAxisLabel, setYAxisLabel] = useState('');
+  // const [yAxisLabel, setYAxisLabel] = useState('');
 
   //State for graph label
   const [graphLabel, setGraphLabel] = useState('');
@@ -143,7 +153,7 @@ export default function Graph({displayData, headers, pid, selectedCheckbox}) {
   useEffect(() => {
     setYAxisLabel(yAxis);
   }, [yAxis]);
-  console.log(displayData);
+  // console.log(displayData);
   //check the graph type every time it's changed. display different choices for each type
   useEffect(() => {
     console.log('in useeffect', graphType);
@@ -154,21 +164,14 @@ export default function Graph({displayData, headers, pid, selectedCheckbox}) {
     }
   }, [graphType]);
 
-  const user = {
-    name: 'Rebecca Nicholas',
-    role: 'Product Designer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  };
-  const stats = [
-    {label: 'Vacation days left', value: 12},
-    {label: 'Sick days left', value: 4},
-    {label: 'Personal days left', value: 2},
+  const share = [
+    {label: 'Download', value: 12},
+    {label: 'Share', value: 4},
   ];
 
   return (
     <>
-      <div className=" w-fill rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+      <div className=" h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
         {graphType ? graphDisplay[graphType] : <FillerDiv />}
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow my-3">
@@ -351,17 +354,21 @@ export default function Graph({displayData, headers, pid, selectedCheckbox}) {
             </div>
           </div>
         </div>
-        {/* <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="px-6 py-5 text-center text-sm font-medium"
-            >
-              <span className="text-gray-900">{stat.value}</span>{' '}
-              <span className="text-gray-600">{stat.label}</span>
-            </div>
-          ))}
-        </div> */}
+        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
+          <button
+            key={share[0].label}
+            className="px-6 py-5 text-center text-sm font-medium border border-black"
+          >
+            <span className="text-gray-600">{share[0].label}</span>
+          </button>
+
+          <button
+            key={share[1].label}
+            className="px-6 py-5 text-center text-sm font-medium border border-black"
+          >
+            <span className="text-gray-600">{share[1].label}</span>
+          </button>
+        </div>
       </div>
     </>
   );

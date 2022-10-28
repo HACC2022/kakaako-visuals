@@ -1,15 +1,16 @@
 import '../styles/globals.css';
-// import Navbar from '../components/Navbar';
-// import Footer from '../components/Footer';
+import AppWrapper from './AppWrapper';
 import Layout from '../components/Layout';
-function MyApp({Component, pageProps}) {
+import Container from '../components/Container';
+
+export default function MyApp({Component, pageProps}) {
   return (
-    <>
+    <AppWrapper>
       <Layout>
-        <Component {...pageProps} />
+        <Container>
+          <Component {...pageProps} />
+        </Container>
       </Layout>
-    </>
+    </AppWrapper>
   );
 }
-
-export default MyApp;

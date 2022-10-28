@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import Table from './table/Table';
+import Loading from './Loading';
 import {useRouter} from 'next/router';
 
 export default function Main() {
@@ -49,9 +50,13 @@ export default function Main() {
     }
   }, [router.isReady]);
 
-  return (
-    <>
-      <Table headers={headers} responseData={responseData} pid={pid} />
-    </>
-  );
+  if (!responseData) {
+    return <Loading />;
+  } else {
+    return (
+      <>
+        <Table headers={headers} responseData={responseData} pid={pid} />
+      </>
+    );
+  }
 }

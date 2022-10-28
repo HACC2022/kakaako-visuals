@@ -18,29 +18,10 @@ const formatObj = {
   KML: 'https://icons.iconarchive.com/icons/icons8/windows-8/512/Files-Kml-icon.png',
 };
 
-export default function DatasetMain() {
-  // All datasets returned from query
-  const [datasets, setDatasets] = useState(undefined);
-
+export default function DatasetMain({datasets, setDatasets}) {
   // Where the pagination will start and stop. Adjusts based on clicking on pagination buttons in Pagination component.
   const [startPagination, setStartPagination] = useState(0);
   const [endPagination, setEndPagination] = useState(30);
-  const [format, setFormat] = useState([]);
-  const [resourcesArray, setResourcesArray] = useState();
-
-  // Querying for all datasets. Storing in state datasets
-  const link = `https://opendata.hawaii.gov/api/3/action/package_search?rows=2000&start=${startPagination}`;
-
-  useEffect(() => {
-    async function fetchData(url) {
-      const res = await fetch(url);
-      const data = await res.json();
-      const allDatasets = data.result.results;
-      // console.log(allDatasets);
-      setDatasets(allDatasets);
-    }
-    fetchData(link);
-  }, [startPagination, endPagination]);
 
   if (!datasets) {
     return <Loading />;
@@ -56,7 +37,7 @@ export default function DatasetMain() {
               >
                 <div className="flex-shrink-0">
                   <Image
-                    src={`/../public/seal.png`}
+                    src="/../public/seal.png"
                     width={80}
                     height={80}
                     alt="Hawaii state seal"
@@ -75,8 +56,6 @@ export default function DatasetMain() {
                     {resources.map(({format}) => {
                       return (
                         <>
-                          {/* <p className="m-1 text-sm ">{format}</p> */}
-
                           <img
                             className="h-4 w-4 m-2 "
                             src={formatObj[format]}
