@@ -60,6 +60,11 @@ export default function Graph({
   }
 
   const chartType = {
+    undefined: {
+      xAxis: 'Choose a graph type',
+      yAxis: 'Choose a graph type',
+      display: <FillerDiv />,
+    },
     'Scatter Chart': {
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
@@ -140,66 +145,6 @@ export default function Graph({
   };
 
   console.log(chartType);
-  //create References
-
-  // const graphDisplay = {
-  //   'Scatter Plot': (
-  //     <ScatterPlot
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-
-  //   ),
-  //   'Bar Graph': (
-  //     <BarGraph
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Pie Chart': (
-  //     <PieChart
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Doughnut Chart': (
-  //     <DoughnutGraph
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Area Chart': (
-  //     <AreaChart
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  // };
 
   // populating graph's label option
   useEffect(() => {
@@ -270,21 +215,18 @@ export default function Graph({
     }
   }, [graphType]);
 
-  const share = [
-    {label: 'Download', value: 12},
-    {label: 'Share', value: 4},
-  ];
+  const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <>
-      <div className=" h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+    <div>
+      <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
         {graphType ? chartType[graphType].display : <FillerDiv />}
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow my-3">
         <h2 className="sr-only" id={pid}>
           {pid}
         </h2>
-        <div className="bg-white p-6">
+        <div className="bg-white p-6 ">
           <div className="sm:flex sm:items-center sm:justify-between">
             <div className="sm:flex sm:space-x-5 ">
               <div className="flex-shrink-0">
@@ -482,6 +424,6 @@ export default function Graph({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -6,8 +6,8 @@ export default function DatasetsIndex() {
   const {datasets} = appContext;
 
   return (
-    <>
+    <div>
       <DatasetMain datasets={datasets} />
-    </>
+    </div>
   );
 }

@@ -17,11 +17,9 @@ export default function PieChart({
     return y[yAxisLabel];
   });
 
-  // console.log(getXArray, '🥶');
-  // console.log(getYArray, '🧶');
   const data = {
     labels: getYArray,
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+
     datasets: [
       {
         label: graphLabel,
