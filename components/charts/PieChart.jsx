@@ -1,5 +1,6 @@
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
 import {Pie} from 'react-chartjs-2';
+import {useEffect, useRef} from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -8,7 +9,15 @@ export default function PieChart({
   yAxisLabel,
   graphLabel,
   selectedCheckbox,
+  setDownload,
 }) {
+  let ref = useRef(null);
+
+  //run this function for ANY dependant changes on the graph
+  useEffect(() => {
+    setDownload(ref);
+  }, [yAxisLabel, xAxisLabel, graphLabel]);
+
   const getXArray = selectedCheckbox.map((x) => {
     return x[xAxisLabel];
   });
@@ -49,7 +58,7 @@ export default function PieChart({
 
   return (
     <div>
-      <Pie data={data} className="max-h-96" />
+      <Pie ref={ref} data={data} className="max-h-96" />
     </div>
   );
 }

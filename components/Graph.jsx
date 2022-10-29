@@ -1,5 +1,5 @@
 import ScatterChart from './charts/ScatterChart';
-import BarChart from './charts/VerticalBarChart';
+import VerticalBarChart from './charts/VerticalBarChart';
 import PieChart from './charts/PieChart';
 import {useEffect, useState, useRef, useCallback, createRef} from 'react';
 import FillerDiv from './FillerDiv';
@@ -37,7 +37,6 @@ export default function Graph({
   //State for graph label
   const [graphLabel, setGraphLabel] = useState('');
 
-
   //Creating Reference to download chart image
   const [download, setDownload] = useState(null);
 
@@ -71,11 +70,6 @@ export default function Graph({
   }
 
   const chartType = {
-    undefined: {
-      xAxis: 'Choose a graph type',
-      yAxis: 'Choose a graph type',
-      display: <FillerDiv />,
-    },
     'Scatter Chart': {
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
@@ -98,7 +92,7 @@ export default function Graph({
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
       display: (
-        <BarChart
+        <VerticalBarChart
           graphLabel={graphLabel}
           xAxis={xAxis}
           yAxis={yAxis}
@@ -106,6 +100,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
@@ -122,6 +117,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
@@ -138,6 +134,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
@@ -155,6 +152,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
@@ -427,8 +425,8 @@ export default function Graph({
         </div>
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
           <button
-            key={share[0].label} 
-            onClick = {downloadImage}
+            key={share[0].label}
+            onClick={downloadImage}
             className="px-6 py-5 text-center text-sm font-medium border border-black"
           >
             <span className="text-gray-600">{share[0].label}</span>
