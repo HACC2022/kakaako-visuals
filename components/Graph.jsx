@@ -83,7 +83,6 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
-          download={download}
           setDownload={setDownload}
         />
       ),
