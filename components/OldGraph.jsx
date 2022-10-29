@@ -1,10 +1,10 @@
 import PieChart from './charts/PieChart';
-import ScatterPlot from './charts/ScatterPlot';
+import ScatterPlot from './charts/ScatterChart';
 import {Doughnut} from 'react-chartjs-2';
 import React from 'react';
 import {useEffect, useState, useRef, useCallback} from 'react';
 import FillerDiv from './FillerDiv';
-import BarGraph from './charts/BarGraph';
+import BarGraph from './charts/VerticalBarChart';
 
 export default function OldGraph({
   displayData,

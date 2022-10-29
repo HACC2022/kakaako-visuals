@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-export default function ScatterPlot({
+export default function ScatterChart({
   xAxis,
   yAxis,
   displayData,
@@ -93,13 +93,6 @@ export default function ScatterPlot({
     }
     setDataMap(coordinates);
     console.log(coordinates);
-    // console.log(yAxis, 'yAxis');
-    // console.log(xAxis, 'xAxis');
-    // console.log(displayData, 'displayData');
-    // console.log(xAxisLabel, 'xAxisLabel');
-    // console.log(yAxisLabel, 'yAxisLabel');
-    // console.log(graphName, 'graphName');
-    // console.log(graphLabel, 'graphLabel');
   }, [yAxis, xAxis, displayData]);
 
   const options = {
@@ -115,7 +108,6 @@ export default function ScatterPlot({
           text: yAxisLabel,
           display: true,
         },
-        // beginAtZero: true,
       },
     },
   };

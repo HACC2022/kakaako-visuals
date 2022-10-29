@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-export default function BarGraph({
+export default function VerticalBarChart({
   xAxis,
   yAxis,
   displayData,
@@ -38,15 +38,6 @@ export default function BarGraph({
 
   // console.log(getXArray, '🥶');
   // console.log(getYArray, '🧶');
-
-  // console.log(yAxis, 'yAxis');
-  // console.log(xAxis, 'xAxis');
-  // console.log(displayData, 'displayData');
-  // console.log(xAxisLabel, 'xAxisLabel');
-  // console.log(yAxisLabel, 'yAxisLabel');
-  // console.log(graphName, 'graphName');
-  // console.log(graphLabel, 'graphLabel');
-  // console.log(selectedCheckbox, 'selectedCheckbox');
 
   // TODO - Need to resolve issue with re-naming axis not re-rendering state.
 

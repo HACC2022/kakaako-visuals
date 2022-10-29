@@ -1,10 +1,11 @@
-import ScatterPlot from './charts/ScatterPlot';
-import {Doughnut} from 'react-chartjs-2';
-import BarGraph from './charts/BarGraph';
+import ScatterChart from './charts/ScatterChart';
+import BarChart from './charts/VerticalBarChart';
 import PieChart from './charts/PieChart';
 import {useEffect, useState, useRef, useCallback} from 'react';
 import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
+import DoughnutChart from './charts/DoughnutChart';
+import AreaChart from './charts/AreaChart';
 
 export default function Graph({
   displayData,
@@ -20,7 +21,7 @@ export default function Graph({
 
   const sortedHeaders = [...headers].sort();
 
-  console.log(sortedHeaders);
+  // console.log(sortedHeaders);
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
 
@@ -37,11 +38,17 @@ export default function Graph({
   const [graphLabel, setGraphLabel] = useState('');
 
   //populate types of graph choices menu
-  const types = ['Bar Graph', 'Pie Chart', 'Scatter Plot', 'Doughnut'];
+  const types = [
+    'Bar Chart',
+    'Pie Chart',
+    'Scatter Chart',
+    'Doughnut Chart',
+    'Area Chart',
+  ];
   const typeHTML = [];
   typeHTML.push(
     <option value="select" key="100">
-      Select Type of Graph
+      Select Type of Chart
     </option>
   );
   for (let i = 0; i < types.length; i++) {
@@ -52,56 +59,149 @@ export default function Graph({
     );
   }
 
-  //create References
+  const chartType = {
+    'Scatter Chart': {
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
+      display: (
+        <ScatterChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
 
-  const graphDisplay = {
-    'Scatter Plot': (
-      <ScatterPlot
-        graphLabel={graphLabel}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        xAxisLabel={xAxisLabel}
-        yAxisLabel={yAxisLabel}
-        displayData={displayData}
-        selectedCheckbox={selectedCheckbox}
-      />
-    ),
-    'Bar Graph': (
-      <BarGraph
-        graphLabel={graphLabel}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        xAxisLabel={xAxisLabel}
-        yAxisLabel={yAxisLabel}
-        displayData={displayData}
-        selectedCheckbox={selectedCheckbox}
-      />
-    ),
-    'Pie Chart': (
-      <PieChart
-        graphLabel={graphLabel}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        xAxisLabel={xAxisLabel}
-        yAxisLabel={yAxisLabel}
-        displayData={displayData}
-        selectedCheckbox={selectedCheckbox}
-      />
-    ),
-    Doughnut: (
-      <Doughnut
-        graphLabel={graphLabel}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        xAxisLabel={xAxisLabel}
-        yAxisLabel={yAxisLabel}
-        displayData={displayData}
-        selectedCheckbox={selectedCheckbox}
-      />
-    ),
+    'Bar Chart': {
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
+      display: (
+        <BarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
+    'Pie Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <PieChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
+    'Doughnut Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <DoughnutChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
+
+    'Area Chart': {
+      xAxis: 'Label',
+      yAxis: 'Value (Number)',
+      display: (
+        <AreaChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
   };
 
-  //populating graph's label option
+  console.log(chartType);
+  //create References
+
+  // const graphDisplay = {
+  //   'Scatter Plot': (
+  //     <ScatterPlot
+  //       graphLabel={graphLabel}
+  //       xAxis={xAxis}
+  //       yAxis={yAxis}
+  //       xAxisLabel={xAxisLabel}
+  //       yAxisLabel={yAxisLabel}
+  //       displayData={displayData}
+  //       selectedCheckbox={selectedCheckbox}
+  //     />
+
+  //   ),
+  //   'Bar Graph': (
+  //     <BarGraph
+  //       graphLabel={graphLabel}
+  //       xAxis={xAxis}
+  //       yAxis={yAxis}
+  //       xAxisLabel={xAxisLabel}
+  //       yAxisLabel={yAxisLabel}
+  //       displayData={displayData}
+  //       selectedCheckbox={selectedCheckbox}
+  //     />
+  //   ),
+  //   'Pie Chart': (
+  //     <PieChart
+  //       graphLabel={graphLabel}
+  //       xAxis={xAxis}
+  //       yAxis={yAxis}
+  //       xAxisLabel={xAxisLabel}
+  //       yAxisLabel={yAxisLabel}
+  //       displayData={displayData}
+  //       selectedCheckbox={selectedCheckbox}
+  //     />
+  //   ),
+  //   'Doughnut Chart': (
+  //     <DoughnutGraph
+  //       graphLabel={graphLabel}
+  //       xAxis={xAxis}
+  //       yAxis={yAxis}
+  //       xAxisLabel={xAxisLabel}
+  //       yAxisLabel={yAxisLabel}
+  //       displayData={displayData}
+  //       selectedCheckbox={selectedCheckbox}
+  //     />
+  //   ),
+  //   'Area Chart': (
+  //     <AreaChart
+  //       graphLabel={graphLabel}
+  //       xAxis={xAxis}
+  //       yAxis={yAxis}
+  //       xAxisLabel={xAxisLabel}
+  //       yAxisLabel={yAxisLabel}
+  //       displayData={displayData}
+  //       selectedCheckbox={selectedCheckbox}
+  //     />
+  //   ),
+  // };
+
+  // populating graph's label option
   useEffect(() => {
     //make the x and y axis option disappear first
     // const xDropdown = document.getElementById('xOptionsDiv');
@@ -160,12 +260,11 @@ export default function Graph({
   useEffect(() => {
     setYAxisLabel(yAxis);
   }, [yAxis]);
-  // console.log(displayData);
+
   //check the graph type every time it's changed. display different choices for each type
   useEffect(() => {
-    console.log('in useeffect', graphType);
     let graphMenu = document.getElementById('graphMenu');
-    if (graphType === 'Bar Graph' || graphType === 'Scatter Plot') {
+    if (graphType === 'Bar Chart' || graphType === 'Scatter Chart') {
       const xDropdown = document.getElementById('xOptionsDiv');
       xDropdown.style.display = 'block';
     }
@@ -179,7 +278,7 @@ export default function Graph({
   return (
     <>
       <div className=" h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
-        {graphType ? graphDisplay[graphType] : <FillerDiv />}
+        {graphType ? chartType[graphType].display : <FillerDiv />}
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow my-3">
         <h2 className="sr-only" id={pid}>
@@ -255,7 +354,10 @@ export default function Graph({
                       htmlFor="xAxis"
                       className="block text-base font-medium text-gray-700 pl-1 "
                     >
-                      X-Axis
+                      {graphType === 'Bar Chart' ||
+                      graphType === 'Scatter Chart'
+                        ? 'X-Axis'
+                        : 'Value'}
                     </label>
 
                     <select
@@ -309,7 +411,10 @@ export default function Graph({
                       htmlFor="yAxis"
                       className="block text-base font-medium text-gray-700 px-1 "
                     >
-                      Y-AXIS
+                      {graphType === 'Bar Chart' ||
+                      graphType === 'Scatter Chart'
+                        ? 'Y-Axis'
+                        : 'Label'}
                     </label>
 
                     <select

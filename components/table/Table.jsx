@@ -25,7 +25,7 @@ export default function Table({headers, responseData, pid, datasets}) {
   } else {
     return (
       <div className="mx-auto  ">
-        {console.log('datasets', datasets)}
+        {/* {console.log('datasets', datasets)} */}
         <div className=" rounded-lg border border-4  p-2 m-3">
           <Graph
             displayData={responseData}
