@@ -8,7 +8,7 @@ export default function DatasetPage() {
   const appContext = useAppContext();
   const {datasets} = appContext;
 
-  if (!makeGraph) {
+  if (makeGraph) {
     return <DatasetLayout />;
   } else {
     return (
