@@ -2,12 +2,10 @@ import {useEffect, useState} from 'react';
 import Table from './table/Table';
 import Loading from './Loading';
 import {useRouter} from 'next/router';
-import DatasetLayout from './datasetInfoLayout/DatasetLayout';
 
 export default function Main({datasets}) {
   // Where all headers are stored
   const [headers, setHeaders] = useState([]);
-  const [makeGraph, setMakeGraph] = useState(false);
 
   // Storing all returned query data
   const [responseData, setResponseData] = useState([]);
@@ -55,19 +53,15 @@ export default function Main({datasets}) {
   if (!datasets && !router.isReady) {
     return;
   } else {
-    if (makeGraph) {
-      return <DatasetLayout />;
-    } else {
-      return (
-        <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
-          <Table
-            headers={headers}
-            responseData={responseData}
-            pid={pid}
-            datasets={datasets}
-          />
-        </div>
-      );
-    }
+    return (
+      <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
+        <Table
+          headers={headers}
+          responseData={responseData}
+          pid={pid}
+          datasets={datasets}
+        />
+      </div>
+    );
   }
 }
