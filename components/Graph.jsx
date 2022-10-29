@@ -1,7 +1,7 @@
 import ScatterChart from './charts/ScatterChart';
-import BarChart from './charts/VerticalBarChart';
+import VerticalBarChart from './charts/VerticalBarChart';
 import PieChart from './charts/PieChart';
-import {useEffect, useState, useRef, useCallback} from 'react';
+import {useEffect, useState, useRef, useCallback, createRef} from 'react';
 import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
@@ -39,6 +39,16 @@ export default function Graph({
   //State for graph label
   const [graphLabel, setGraphLabel] = useState('');
 
+  //Creating Reference to download chart image
+  const [download, setDownload] = useState(null);
+
+  const downloadImage = () => {
+    const link = document.createElement('a');
+    link.download = 'chart.png';
+    link.href = download.current.toBase64Image();
+    link.click();
+  };
+
   //populate types of graph choices menu
   const types = [
     'Bar Chart',
@@ -75,6 +85,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -83,7 +95,7 @@ export default function Graph({
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
       display: (
-        <BarChart
+        <VerticalBarChart
           graphLabel={graphLabel}
           xAxis={xAxis}
           yAxis={yAxis}
@@ -91,6 +103,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -106,6 +120,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -121,6 +137,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -137,6 +155,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -159,66 +179,6 @@ export default function Graph({
   };
 
   console.log(chartType);
-  //create References
-
-  // const graphDisplay = {
-  //   'Scatter Plot': (
-  //     <ScatterPlot
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-
-  //   ),
-  //   'Bar Graph': (
-  //     <BarGraph
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Pie Chart': (
-  //     <PieChart
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Doughnut Chart': (
-  //     <DoughnutGraph
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  //   'Area Chart': (
-  //     <AreaChart
-  //       graphLabel={graphLabel}
-  //       xAxis={xAxis}
-  //       yAxis={yAxis}
-  //       xAxisLabel={xAxisLabel}
-  //       yAxisLabel={yAxisLabel}
-  //       displayData={displayData}
-  //       selectedCheckbox={selectedCheckbox}
-  //     />
-  //   ),
-  // };
 
   // populating graph's label option
   useEffect(() => {
@@ -289,21 +249,18 @@ export default function Graph({
     }
   }, [graphType]);
 
-  const share = [
-    {label: 'Download', value: 12},
-    {label: 'Share', value: 4},
-  ];
+  const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <>
-      <div className=" h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+    <div>
+      <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
         {graphType ? chartType[graphType].display : <FillerDiv />}
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow my-3">
         <h2 className="sr-only" id={pid}>
           {pid}
         </h2>
-        <div className="bg-white p-6">
+        <div className="bg-white p-6 ">
           <div className="sm:flex sm:items-center sm:justify-between">
             <div className="sm:flex sm:space-x-5 ">
               <div className="flex-shrink-0">
@@ -488,6 +445,7 @@ export default function Graph({
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
           <button
             key={share[0].label}
+            onClick={downloadImage}
             className="px-6 py-5 text-center text-sm font-medium border border-black"
           >
             <span className="text-gray-600">{share[0].label}</span>
@@ -501,6 +459,6 @@ export default function Graph({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

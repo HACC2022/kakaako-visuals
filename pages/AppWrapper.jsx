@@ -21,7 +21,6 @@ export default function AppWrapper({children}) {
   }, []);
 
   const sharedState = {
-    cat: 'cat',
     datasets: datasets,
     setDatasets: setDatasets,
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useRef} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,7 +28,16 @@ export default function AreaChart({
   yAxisLabel,
   graphLabel,
   selectedCheckbox,
+  setDownload,
+  download,
 }) {
+  let ref = useRef(null);
+
+  //run this function for ANY dependant changes on the graph
+  useEffect(() => {
+    setDownload(ref);
+  }, [yAxisLabel, xAxisLabel, graphLabel]);
+
   const getXArray = selectedCheckbox.map((x) => {
     return x[xAxisLabel];
   });
@@ -75,5 +84,5 @@ export default function AreaChart({
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return <Line ref={ref} options={options} data={data} />;
 }

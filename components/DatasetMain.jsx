@@ -26,58 +26,58 @@ export default function DatasetMain({datasets, setDatasets}) {
   if (!datasets) {
     return <Loading />;
   } else {
-    return (
+  return (
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {datasets
-            .map(({title, name, resources}) => (
-              <div
-                key={name}
-                className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
-              >
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {datasets
+          .map(({title, name, resources}) => (
+            <div
+              key={name}
+              className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+            >
                 <div className="flex-shrink-0">
-                  <Image
-                    src="/../public/seal.png"
-                    width={80}
-                    height={80}
-                    alt="Hawaii state seal"
-                  />
-                </div>
+                <Image
+                  src="/../public/seal.png"
+                  width={80}
+                  height={80}
+                  alt="Hawaii state seal"
+                />
+              </div>
                 <div className="min-w-0 flex-1">
-                  <Link href={`/datasets/${name}`}>
-                    <a className="focus:outline-none">
-                      <span className="absolute inset-0" aria-hidden="true" />
+                <Link href={`/datasets/${name}`}>
+                  <a className="focus:outline-none">
+                    <span className="absolute inset-0" aria-hidden="true" />
                       <p className="text-sm font-medium text-gray-900">
                         {title}
                       </p>
-                    </a>
-                  </Link>
+                  </a>
+                </Link>
                   <div className="format flex">
-                    {resources.map(({format}) => {
-                      return (
-                        <>
+                  {resources.map(({format}) => {
+                    return (
+                      <>
                           <img
                             className="h-4 w-4 m-2 "
                             src={formatObj[format]}
                           />
-                        </>
-                      );
-                    })}
-                  </div>
+                      </>
+                    );
+                  })}
                 </div>
               </div>
-            ))
-            .slice(startPagination, endPagination)}
-        </div>
-
-        <Pagination
-          startPagination={startPagination}
-          endPagination={endPagination}
-          setStartPagination={setStartPagination}
-          setEndPagination={setEndPagination}
-          datasets={datasets}
-        />
+            </div>
+          ))
+          .slice(startPagination, endPagination)}
       </div>
-    );
+
+      <Pagination
+        startPagination={startPagination}
+        endPagination={endPagination}
+        setStartPagination={setStartPagination}
+        setEndPagination={setEndPagination}
+        datasets={datasets}
+      />
+    </div>
+  );
   }
 }
