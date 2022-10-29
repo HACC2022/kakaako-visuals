@@ -6,6 +6,8 @@ import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
+import Radar from './charts/RadarChart';
+import RadarChart from './charts/RadarChart';
 
 export default function Graph({
   displayData,
@@ -44,6 +46,7 @@ export default function Graph({
     'Scatter Chart',
     'Doughnut Chart',
     'Area Chart',
+    'Radar Chart'
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -127,6 +130,22 @@ export default function Graph({
       yAxis: 'Value (Number)',
       display: (
         <AreaChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+        />
+      ),
+    },
+
+    'Radar Chart': {
+      xAxis: 'Label',
+      yAxis: 'Value (Number)',
+      display: (
+        <RadarChart
           graphLabel={graphLabel}
           xAxis={xAxis}
           yAxis={yAxis}

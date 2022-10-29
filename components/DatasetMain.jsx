@@ -52,7 +52,7 @@ export default function DatasetMain({datasets, setDatasets}) {
                       </p>
                     </a>
                   </Link>
-                  <div className="flex">
+                  <div className="format flex">
                     {resources.map(({format}) => {
                       return (
                         <>
