@@ -1,8 +1,10 @@
-import DatasetInfoHeader from './DatasetInfo';
+import Sidebar from '../Sidebar';
+import DatasetInfoHeader from './DatasetHeader';
 
 export default function DatasetLayout() {
   return (
-    <div className="mx-auto w-10/12 h-screen sm:px-1 lg:px-2 flex">
+    <div className="flex flex-row h-screen sm:px-1 lg:px-2 flex">
+      <Sidebar />
       <DatasetInfoHeader />
     </div>
   );

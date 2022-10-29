@@ -29,7 +29,7 @@ export default function GroupID() {
   } else {
     // console.log(groups);
     return (
-      <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
+      <div className="mx-auto max-w-7xl sm:px-3 lg:px-4 ">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {groups
             .map(({title, name}) => (

@@ -1,9 +1,8 @@
 const tabs = [
-  {name: 'Applied', href: '#', current: false},
-  {name: 'Phone Screening', href: '#', current: false},
-  {name: 'Interview', href: '#', current: true},
-  {name: 'Offer', href: '#', current: false},
-  {name: 'Hired', href: '#', current: false},
+  {name: 'Dataset', href: '#', current: false},
+  {name: 'Groups', href: '#', current: false},
+  {name: 'Activity Stream', href: '#', current: true},
+  {name: 'Showcases', href: '#', current: false},
 ];
 
 function classNames(...classes) {
@@ -12,10 +11,10 @@ function classNames(...classes) {
 
 export default function DatasetInfoHeader() {
   return (
-    <div className=" sm:px-1 lg:px-2 ">
+    <div className="basis-4/5 sm:px-1 lg:px-2 ">
       <div className="md:flex md:items-center md:justify-between">
         <h3 className="text-lg font-medium leading-6 text-gray-900">
-          Candidates
+          Name of dataset
         </h3>
         <div className="mt-3 flex  md:top-3 md:right-0 md:mt-0">
           <button

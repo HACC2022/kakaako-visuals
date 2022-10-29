@@ -51,7 +51,7 @@ export default function Graph({
 
   //populate types of graph choices menu
   const types = [
-    'Bar Chart',
+    'Vertical Bar Chart',
     'Pie Chart',
     'Scatter Chart',
     'Doughnut Chart',
@@ -92,7 +92,7 @@ export default function Graph({
       ),
     },
 
-    'Bar Chart': {
+    'Vertical Bar Chart': {
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
       display: (
@@ -263,7 +263,7 @@ export default function Graph({
   //check the graph type every time it's changed. display different choices for each type
   useEffect(() => {
     let graphMenu = document.getElementById('graphMenu');
-    if (graphType === 'Bar Chart' || graphType === 'Scatter Chart') {
+    if (graphType === 'Vertical Bar Chart' || graphType === 'Scatter Chart') {
       const xDropdown = document.getElementById('xOptionsDiv');
       xDropdown.style.display = 'block';
     }
@@ -350,7 +350,7 @@ export default function Graph({
                       htmlFor="xAxis"
                       className="block text-base font-medium text-gray-700 pl-1 "
                     >
-                      {graphType === 'Bar Chart' ||
+                      {graphType === 'Vertical Bar Chart' ||
                       graphType === 'Scatter Chart'
                         ? 'X-Axis'
                         : 'Value'}
@@ -407,7 +407,7 @@ export default function Graph({
                       htmlFor="yAxis"
                       className="block text-base font-medium text-gray-700 px-1 "
                     >
-                      {graphType === 'Bar Chart' ||
+                      {graphType === 'Vertical Bar Chart' ||
                       graphType === 'Scatter Chart'
                         ? 'Y-Axis'
                         : 'Label'}

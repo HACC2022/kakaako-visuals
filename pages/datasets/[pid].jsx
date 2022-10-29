@@ -9,10 +9,14 @@ export default function DatasetPage() {
   const {datasets} = appContext;
 
   if (makeGraph) {
-    return <DatasetLayout />;
+    return (
+      <div>
+        <DatasetLayout />
+      </div>
+    );
   } else {
     return (
-      <div className="mx-auto max-w-3/4 sm:px-3 lg:px-4">
+      <div className="sm:px-3 lg:px-4">
         <Main datasets={datasets} />
       </div>
     );

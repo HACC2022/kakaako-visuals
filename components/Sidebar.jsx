@@ -77,7 +77,7 @@ function classNames(...classes) {
 
 export default function Sidebar() {
   return (
-    <div className="flex-col w-1/3 border-r border-gray-200 bg-white pt-5 pb-4">
+    <div className="flex-col basis-1/5 border-r border-gray-200 bg-white pt-5 pb-4">
       <div className="flex flex-shrink-0 items-center px-4">
         {/* <img
           className="h-8 w-auto"
