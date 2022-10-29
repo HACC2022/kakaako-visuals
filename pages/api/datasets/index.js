@@ -1,6 +1,15 @@
-const link =
-  'https://opendata.hawaii.gov/api/3/action/datastore_search?resource_id=caf4dc69-cf11-43dc-b4f9-3c29156d7630&limit=5';
+//const link = 'https://opendata.hawaii.gov/api/3/action/package_list';
+// const link = 'https://opendata.hawaii.gov/api/3/action/group_list';
 
-export default function datasetHandler(req, res) {
-  res.status(200).json();
-}
+// const getData = async (url) => {
+//   const res = await fetch(link);
+//   const jsonData = await res.json();
+//   console.log(jsonData);
+// };
+
+// const money = getData(link);
+// console.log(money);
+// export default function datasetHandler(req, res) {
+//   console.log(money);
+//   res.status(200).json({money: money});
+// }
