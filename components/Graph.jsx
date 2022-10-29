@@ -16,6 +16,11 @@ export default function Graph({
   setYAxisLabel,
   setXAxisLabel,
 }) {
+  // Sort Headers for dropdowns
+
+  const sortedHeaders = [...headers].sort();
+
+  console.log(sortedHeaders);
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
 
@@ -112,7 +117,7 @@ export default function Graph({
         Select X Axis
       </option>
     );
-    for (const xLabel of headers) {
+    for (const xLabel of sortedHeaders) {
       xAxisLabels.push(
         <option value={xLabel} key={key}>
           {xLabel}
@@ -134,7 +139,7 @@ export default function Graph({
     );
     setXAxisLabel(xAxis);
 
-    for (const yLabel of headers) {
+    for (const yLabel of sortedHeaders) {
       if (yLabel !== xAxis) {
         yAxisLabels.push(
           <option value={yLabel} key={key}>
@@ -245,7 +250,7 @@ export default function Graph({
                     </select>
                   </div>
                   {/* X AXIS DROP DOWN OPTIONS */}
-                  <div id="xOptionsDiv" style={{display: 'none'}}>
+                  <div id="xOptionsDiv">
                     <label
                       htmlFor="xAxis"
                       className="block text-base font-medium text-gray-700 pl-1 "
@@ -299,7 +304,7 @@ export default function Graph({
                     </div>
                   </div>
                   {/* Y AXIS DROP DOWN OPTIONS */}
-                  <div id="yOptionsDiv" style={{display: 'none'}}>
+                  <div id="yOptionsDiv">
                     <label
                       htmlFor="yAxis"
                       className="block text-base font-medium text-gray-700 px-1 "

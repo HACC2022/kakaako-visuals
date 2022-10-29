@@ -4,47 +4,20 @@ import Loading from '../Loading';
 
 export default function Table({headers, responseData, pid, datasets}) {
   const [selectedCheckbox, setSelectedCheckbox] = useState([]);
-  // const [selectedGraphType, setSelectedGraphType] = useState([]);
-  // const [selectedColumn, setSelectedColumn] = useState([]);
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
 
-  // function getDatasetInfo(datasetPID){
-  //   for(let i = 0; i < datasets.length; i++){
-  //     if(datasets.name === pid)
-  //   }
-  // }
-
-  // console.log(responseData, 'RD');
-  // const titleOfDataset = datasets.filter((word) => {
-  //   if ((word.title = pid)) return word.title;
-  // });
-  // if (datasets) {
-  //   console.log(datasets[0]);
-  // }
-  // console.log(datasets[0][0], 'datasets');
-
-  // const selectedCheckbox = [];
-
+  // function to save entire object of element selected by checkbox
   function handleSelectedCheckbox(e) {
     const checkedValue = e.target.value;
     console.log(checkedValue, 'checkcheck');
-    // const parsed = Object.entries(checkedValue);
 
     for (let i = 0; i < responseData.length; i++) {
-      // console.log(
-      //   responseData[i],
-      //   'dsfjklasjdfklasjdflkasjflk;asjf;kljdakfjaks;ldfj;l'
-      // );
       if (responseData[i]._id === Number(checkedValue)) {
         setSelectedCheckbox((prevArray) => [...prevArray, responseData[i]]);
       }
     }
-
-    // console.log(parsed, 'parsed');
-    // selectedCheckbox.push(checkedValue);
     console.log(selectedCheckbox);
-    // setSelectedCheckbox((prevArray) => [...prevArray, checkedValue]);
   }
 
   if (!datasets && !pid) {
