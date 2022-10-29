@@ -25,7 +25,7 @@ export default function DatasetMain({datasets, setDatasets}) {
   const [endPagination, setEndPagination] = useState(30);
 
   return (
-    <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
+    <div className=" sm:px-3 lg:px-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {datasets
           .map(({title, name, resources}) => (

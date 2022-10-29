@@ -54,7 +54,7 @@ export default function Main({datasets}) {
     return;
   } else {
     return (
-      <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
+      <div className="mx-auto  max-w-7xl sm:px-3 lg:px-4">
         <Table
           headers={headers}
           responseData={responseData}
