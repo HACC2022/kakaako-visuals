@@ -6,8 +6,8 @@ import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
-import Radar from './charts/RadarChart';
 import RadarChart from './charts/RadarChart';
+import HorizontalBarChart from './charts/HorizontalBarChart';
 
 export default function Graph({
   displayData,
@@ -56,7 +56,8 @@ export default function Graph({
     'Scatter Chart',
     'Doughnut Chart',
     'Area Chart',
-    'Radar Chart'
+    'Radar Chart',
+    'Horizontal Bar Chart',
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -173,6 +174,25 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
+        />
+      ),
+    },
+
+    'Horizontal Bar Chart': {
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
+      display: (
+        <HorizontalBarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -253,7 +273,7 @@ export default function Graph({
 
   return (
     <div>
-      <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+      <div className="min-h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
         {graphType ? chartType[graphType].display : <FillerDiv />}
       </div>
       <div className="overflow-hidden rounded-lg bg-white shadow my-3">
@@ -446,14 +466,14 @@ export default function Graph({
           <button
             key={share[0].label}
             onClick={downloadImage}
-            className="px-6 py-5 text-center text-sm font-medium border border-black"
+            className="px-6 py-5 text-center text-sm font-medium"
           >
             <span className="text-gray-600">{share[0].label}</span>
           </button>
 
           <button
             key={share[1].label}
-            className="px-6 py-5 text-center text-sm font-medium border border-black"
+            className="px-6 py-5 text-center text-sm font-medium"
           >
             <span className="text-gray-600">{share[1].label}</span>
           </button>
