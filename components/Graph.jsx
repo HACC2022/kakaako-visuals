@@ -101,6 +101,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
         />
       ),
     },
@@ -116,6 +117,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
         />
       ),
     },
@@ -131,6 +133,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
         />
       ),
     },
@@ -147,6 +150,7 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
         />
       ),
     },
