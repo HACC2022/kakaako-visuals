@@ -1,7 +1,7 @@
 import ScatterChart from './charts/ScatterChart';
 import BarChart from './charts/VerticalBarChart';
 import PieChart from './charts/PieChart';
-import {useEffect, useState, useRef, useCallback} from 'react';
+import {useEffect, useState, useRef, useCallback, createRef} from 'react';
 import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
@@ -36,6 +36,17 @@ export default function Graph({
 
   //State for graph label
   const [graphLabel, setGraphLabel] = useState('');
+
+
+  //Creating Reference to download chart image
+  const [download, setDownload] = useState(null);
+
+  const downloadImage = () => {
+    const link = document.createElement('a');
+    link.download = 'chart.png';
+    link.href = download.current.toBase64Image();
+    link.click();
+  };
 
   //populate types of graph choices menu
   const types = [
@@ -72,6 +83,8 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
         />
       ),
     },
@@ -468,7 +481,8 @@ export default function Graph({
         </div>
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
           <button
-            key={share[0].label}
+            key={share[0].label} 
+            onClick = {downloadImage}
             className="px-6 py-5 text-center text-sm font-medium border border-black"
           >
             <span className="text-gray-600">{share[0].label}</span>
