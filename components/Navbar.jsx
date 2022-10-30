@@ -1,10 +1,10 @@
 import {Fragment} from 'react';
-import {Disclosure, Menu, Transition} from '@headlessui/react';
+import {Disclosure} from '@headlessui/react';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
-import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline';
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
 import {useAppContext} from '../pages/AppWrapper';
 import Link from 'next/link';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Image from 'next/image';
 
 const navigation = [
@@ -15,7 +15,6 @@ const navigation = [
     current: false,
   },
   {name: 'Groups', href: '/groups', current: false},
-  {name: 'Organizations', href: '/organizations', current: false},
 ];
 
 function classNames(...classes) {
