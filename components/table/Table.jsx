@@ -1,24 +1,51 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Graph from '../Graph';
 import Loading from '../Loading';
 
 export default function Table({headers, responseData, pid, datasets}) {
-  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+  const [selectedCheckbox, setSelectedCheckbox] = useState([], ()=>{console.log(selectedCheckbox)});
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
 
+  // console.log('response Data', responseData)
   // function to save entire object of element selected by checkbox
-  function handleSelectedCheckbox(e) {
-    const checkedValue = e.target.value;
-    console.log(checkedValue, 'checkcheck');
-
-    for (let i = 0; i < responseData.length; i++) {
-      if (responseData[i]._id === Number(checkedValue)) {
-        setSelectedCheckbox((prevArray) => [...prevArray, responseData[i]]);
+   function handleSelectedCheckbox(e) {
+    const checkedValue = Number(e.target.value);
+    // console.log(e.target.checked)
+    // console.log('checkvalue: ', checkedValue);
+    if (e.target.checked === true){
+      for (let i = 0; i < responseData.length; i++) { 
+          if (responseData[i]._id === checkedValue) {
+            setSelectedCheckbox((prevArray) => [...prevArray, responseData[i]]);
+          }
       }
     }
-    console.log(selectedCheckbox);
+    else if (e.target.checked === false){
+      setSelectedCheckbox((prevArray) => {
+        const newArr = [...prevArray]
+        for (let i=0; i<newArr.length; i++){
+          if (newArr[i]._id === checkedValue){
+            newArr.splice(i, 1)
+            return newArr
+          }
+        }
+      })
+    }
   }
+
+  useEffect(()=>{
+    console.log('data passing down to Graph', selectedCheckbox)
+  }, [selectedCheckbox])
+
+  
+  const handleCheckAll = (e) =>{
+    e.target.checked? setSelectedCheckbox(responseData) : setSelectedCheckbox([])
+    const allRows = document.getElementsByName('selectAllHelper')
+    for (let checkbox of allRows){
+      checkbox.checked = e.target.checked;
+    }
+  }
+  
 
   if (!datasets && !pid) {
     return <Loading />;
@@ -60,6 +87,7 @@ export default function Table({headers, responseData, pid, datasets}) {
                       type="checkbox"
                       id="SelectAll"
                       key={`top input`}
+                      onClick={handleCheckAll}
                     />
                   </th>
                   {/*////////////// TABLE HEADERS /////////////////*/}
@@ -116,6 +144,7 @@ export default function Table({headers, responseData, pid, datasets}) {
                           {/* {console.log(obj._id)} */}
                           <input
                             className="h-5 w-5 rounded border-gray-200"
+                            name = "selectAllHelper"
                             type="checkbox"
                             id={`Row ${i}`}
                             value={obj._id}

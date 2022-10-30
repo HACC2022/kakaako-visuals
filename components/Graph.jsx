@@ -155,7 +155,7 @@ export default function Graph({
     },
   };
 
-  console.log(chartType);
+  // console.log(chartType);
   //create References
 
   // const graphDisplay = {

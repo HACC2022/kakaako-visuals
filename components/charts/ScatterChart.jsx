@@ -88,7 +88,7 @@ export default function ScatterChart({
       });
     }
     setDataMap(coordinates);
-    console.log(coordinates);
+    // console.log(coordinates);
   }, [yAxis, xAxis, selectedCheckbox]);
 
   const options = {
