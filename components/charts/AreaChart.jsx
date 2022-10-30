@@ -84,5 +84,5 @@ export default function AreaChart({
     ],
   };
 
-  return <Line ref={ref} options={options} data={data} />;
+  return <Line ref={ref} options={options} data={data} className="max-h-96" />;
 }

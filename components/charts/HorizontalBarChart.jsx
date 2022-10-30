@@ -88,5 +88,5 @@ const data = {
   ],
 };
 
-  return <Bar ref={ref} options={options} data={data} />;
+  return <Bar ref={ref} options={options} data={data} className="max-h-96" />;
 }
