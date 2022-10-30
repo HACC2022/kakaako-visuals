@@ -111,7 +111,6 @@ export default function Table({headers, responseData, pid, datasets}) {
                           className="sr-only"
                           htmlFor={`Row ${index}`}
                         ></label>
-                        {/* {console.log(obj._id)} */}
                         <input
                           className="h-5 w-5 rounded border-gray-200"
                           type="checkbox"

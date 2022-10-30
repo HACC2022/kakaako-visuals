@@ -1,7 +1,7 @@
 import Main from '../../components/Main';
 import {useAppContext} from '../AppWrapper';
 import {useState, useEffect} from 'react';
-import DatasetLayout from '../../components/datasetInfoLayout/DatasetLayout';
+import DatasetContainer from '../../components/datasetInfoLayout/DatasetContainer';
 import Loading from '../../components/Loading';
 import {useRouter} from 'next/router';
 
@@ -34,13 +34,13 @@ export default function DatasetPage() {
     if (!makeGraph) {
       return (
         <div>
-          <DatasetLayout displayData={displayData} pid={pid} />
+          <DatasetContainer displayData={displayData} makeGraph={makeGraph} />
         </div>
       );
     } else {
       return (
         <div className="sm:px-3 lg:px-4">
-          <Main datasets={datasets} />
+          <Main datasets={datasets} makeGraph={makeGraph} />
         </div>
       );
     }
