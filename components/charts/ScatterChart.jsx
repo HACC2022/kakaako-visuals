@@ -24,6 +24,7 @@ export default function ScatterChart({
   xAxis,
   yAxis,
   displayData,
+  selectedCheckbox,
   xAxisLabel,
   yAxisLabel,
   graphName,
@@ -36,7 +37,7 @@ export default function ScatterChart({
   //run this function for ANY dependant changes on the graph
   useEffect(()=>{
     setDownload(ref)
-  }, [xAxis, yAxis, displayData, yAxisLabel, xAxisLabel, graphLabel, graphName])
+  }, [xAxis, yAxis, displayData, selectedCheckbox, yAxisLabel, xAxisLabel, graphLabel, graphName])
 
 
   // const downloadImage = useCallback(() => {
@@ -80,15 +81,15 @@ export default function ScatterChart({
 
   useEffect(() => {
     const coordinates = [];
-    for (let i = 0; i < displayData.length; i++) {
+    for (let i = 0; i < selectedCheckbox.length; i++) {
       coordinates.push({
-        x: displayData[i][xAxis],
-        y: displayData[i][yAxis],
+        x: selectedCheckbox[i][xAxis],
+        y: selectedCheckbox[i][yAxis],
       });
     }
     setDataMap(coordinates);
-    console.log(coordinates);
-  }, [yAxis, xAxis, displayData]);
+    // console.log(coordinates);
+  }, [yAxis, xAxis, selectedCheckbox]);
 
   const options = {
     scales: {
@@ -116,8 +117,6 @@ export default function ScatterChart({
       },
     ],
   };
-
-  console.log(displayData);
 
   return (
     <div>
