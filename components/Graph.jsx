@@ -41,10 +41,12 @@ export default function Graph({
   const [download, setDownload] = useState(null);
 
   const downloadImage = () => {
+    if (download !== null){
     const link = document.createElement('a');
     link.download = 'chart.png';
     link.href = download.current.toBase64Image();
     link.click();
+    }
   };
 
   //populate types of graph choices menu
