@@ -1,9 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import Link from 'next/link';
 import Pagination from './Pagination';
 import Loading from './Loading';
 import Image from 'next/image';
-import DatasetLayout from './datasetInfoLayout/DatasetLayout';
 
 const formatObj = {
   CSV: 'https://icons.iconarchive.com/icons/icons8/ios7/256/Files-Csv-icon.png',
@@ -19,7 +18,7 @@ const formatObj = {
   KML: 'https://icons.iconarchive.com/icons/icons8/windows-8/512/Files-Kml-icon.png',
 };
 
-export default function DatasetMain({datasets, setDatasets}) {
+export default function DatasetMain({datasets, resources}) {
   // Where the pagination will start and stop. Adjusts based on clicking on pagination buttons in Pagination component.
   const [startPagination, setStartPagination] = useState(0);
   const [endPagination, setEndPagination] = useState(30);
@@ -31,7 +30,7 @@ export default function DatasetMain({datasets, setDatasets}) {
       <div className=" basis-4/5 sm:px-3 lg:px-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {datasets
-            .map(({title, name, resources}) => (
+            .map(({title, name}) => (
               <div
                 key={name}
                 className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"

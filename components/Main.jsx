@@ -51,7 +51,7 @@ export default function Main({datasets}) {
   }, [router.isReady]);
 
   if (!datasets && !router.isReady) {
-    return;
+    return <Loading />;
   } else {
     return (
       <div className="mx-auto  max-w-7xl sm:px-3 lg:px-4">

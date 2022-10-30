@@ -1,3 +1,7 @@
+import DatasetNotes from './DatasetNotes';
+import DatasetBadges from './DatasetBadges';
+import DatasetFormats from './DatasetFormats';
+
 const tabs = [
   {name: 'Dataset', href: '#', current: false},
   {name: 'Groups', href: '#', current: false},
@@ -9,13 +13,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function DatasetInfoHeader() {
+export default function DatasetHeader({displayData}) {
   return (
     <div className="basis-4/5 sm:px-1 lg:px-2 ">
       <div className="md:flex md:items-center md:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
-          Name of dataset
-        </h3>
+        <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5">
+          {`${displayData.title}`}
+        </h1>
         <div className="mt-3 flex  md:top-3 md:right-0 md:mt-0">
           <button
             type="button"
@@ -65,7 +69,10 @@ export default function DatasetInfoHeader() {
               </a>
             ))}
           </nav>
+          <DatasetNotes displayData={displayData} />
         </div>
+        <DatasetFormats displayData={displayData} />
+        <DatasetBadges />
       </div>
     </div>
   );
