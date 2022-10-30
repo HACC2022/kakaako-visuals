@@ -14,23 +14,22 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function DatasetLayout({displayData}) {
+export default function DatasetLayout({
+  datasetData,
+  handleGraphView,
+  setMakeGraph,
+}) {
   return (
-    <div className="basis-4/5 sm:px-1 lg:px-2 ">
+    <div className="basis-4/5 px-1 ">
       <div className="md:flex md:items-center md:justify-between ">
         <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5">
-          {`${displayData.title}`}
+          {`${datasetData.title}`}
         </h1>
         <div className="mt-3 flex  md:top-3 md:right-0 md:mt-0 ">
-          {/* <button
-            type="button"
-            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Share
-          </button> */}
           <button
             type="button"
-            className="mr-3.5 inline-flex items-center rounded-md border border-transparent bg-red-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="mr-3.5 inline-flex items-center rounded-md border shrink-0 border-transparent bg-red-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            onClick={() => setMakeGraph(true)}
           >
             Create Graph
           </button>
@@ -72,10 +71,10 @@ export default function DatasetLayout({displayData}) {
           </nav>
         </div>
         <div>
-          <DatasetNotes displayData={displayData} />
-          <DatasetFormats displayData={displayData} />
-          <DatasetBadges displayData={displayData} />
-          <DatasetTable displayData={displayData} />
+          <DatasetNotes datasetData={datasetData} />
+          <DatasetFormats datasetData={datasetData} />
+          <DatasetBadges datasetData={datasetData} />
+          <DatasetTable datasetData={datasetData} />
         </div>
       </div>
     </div>

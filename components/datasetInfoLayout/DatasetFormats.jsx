@@ -14,9 +14,8 @@ const formatObj = {
   KML: 'https://icons.iconarchive.com/icons/icons8/windows-8/256/Files-Kml-icon.png',
 };
 
-export default function DatasetFormats({displayData}) {
-  const {resources} = displayData;
-  console.log(resources, 'RESOURCES');
+export default function DatasetFormats({datasetData}) {
+  const {resources} = datasetData;
   if (resources === undefined) {
     return <Loading />;
   } else {

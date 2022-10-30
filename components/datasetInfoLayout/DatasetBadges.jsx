@@ -1,11 +1,10 @@
 import Loading from '../Loading';
 import {useState} from 'react';
 
-export default function DatasetBadges({displayData}) {
-  const {tags} = displayData;
-  console.log(tags, 'TAGS');
+export default function DatasetBadges({datasetData}) {
+  const {tags} = datasetData;
 
-  if (displayData === undefined) {
+  if (datasetData === undefined) {
     return <Loading />;
   } else {
     return (

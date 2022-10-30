@@ -8,14 +8,13 @@ const people = [
   // More people...
 ];
 
-export default function DatasetTable({displayData}) {
-  const {author, maintainer, metadata_modified, metadata_created} = displayData;
-  // const others = Object.keys(displayData.extras);
-  console.log(displayData.extras);
+export default function DatasetTable({datasetData}) {
+  const {author, maintainer, metadata_modified, metadata_created} = datasetData;
+  // const others = Object.keys(datasetData.extras);
 
-  if (displayData.extras) {
-    console.log(Object.values(displayData.extras));
-    for (let i = 0; i < displayData.extras.length; i++) {}
+  if (datasetData.extras) {
+    console.log(Object.values(datasetData.extras));
+    for (let i = 0; i < datasetData.extras.length; i++) {}
   }
 
   const additionalDataArray = [
@@ -24,9 +23,8 @@ export default function DatasetTable({displayData}) {
     metadata_modified,
     metadata_created,
   ];
-  console.log(additionalDataArray);
 
-  if (displayData === undefined) {
+  if (datasetData === undefined) {
     return;
   } else {
     return (

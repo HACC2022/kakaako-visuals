@@ -54,7 +54,7 @@ export default function PieChart({
     ],
   };
 
-  console.log(data.labels, 'LABELS');
+  // console.log(data.labels, 'LABELS');
 
   return (
     <div>

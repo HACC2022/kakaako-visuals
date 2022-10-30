@@ -7,7 +7,7 @@ import {useRouter} from 'next/router';
 
 export default function DatasetPage() {
   const [makeGraph, setMakeGraph] = useState(false);
-  const [displayData, setDisplayData] = useState([]);
+  const [datasetData, setdatasetData] = useState([]);
   const appContext = useAppContext();
   const {datasets} = appContext;
 
@@ -15,12 +15,20 @@ export default function DatasetPage() {
   const router = useRouter();
   const {pid} = router.query;
 
+  // function handleGraphView() {
+  //   if (makeGraph === false) {
+  //     setMakeGraph(true);
+  //   } else if (makeGraph === true) {
+  //     setMakeGraph(false);
+  //   }
+  // }
+
   useEffect(() => {
     if (datasets) {
       for (let i = 0; i < datasets.length; i++) {
         if (datasets[i].name === pid) {
-          console.log('Here it is, displayData pid', datasets[i]);
-          setDisplayData(datasets[i]);
+          console.log('Here it is, dataset pid', datasets[i]);
+          setdatasetData(datasets[i]);
         } else {
           ('Not Found');
         }
@@ -28,19 +36,34 @@ export default function DatasetPage() {
     }
   }, [router.isReady, datasets]);
 
-  if (!displayData && router.isReady) {
+  // useEffect(() => {
+  //   handleGraphView();
+  // }, [makeGraph]);
+
+  if (!datasetData && router.isReady) {
     return <Loading />;
   } else {
     if (!makeGraph) {
       return (
         <div>
-          <DatasetContainer displayData={displayData} makeGraph={makeGraph} />
+          <DatasetContainer
+            datasetData={datasetData}
+            makeGraph={makeGraph}
+            setMakeGraph={setMakeGraph}
+            // handleGraphView={handleGraphView}
+          />
         </div>
       );
     } else {
       return (
         <div className="sm:px-3 lg:px-4">
-          <Main datasets={datasets} makeGraph={makeGraph} />
+          <Main
+            datasets={datasets}
+            datasetData={datasetData}
+            makeGraph={makeGraph}
+            setMakeGraph={setMakeGraph}
+            // handleGraphView={handleGraphView}
+          />
         </div>
       );
     }

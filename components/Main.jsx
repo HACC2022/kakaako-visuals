@@ -3,7 +3,12 @@ import Table from './table/Table';
 import Loading from './Loading';
 import {useRouter} from 'next/router';
 
-export default function Main({datasets}) {
+export default function Main({
+  datasets,
+  handleGraphView,
+  datasetData,
+  setMakeGraph,
+}) {
   // Where all headers are stored
   const [headers, setHeaders] = useState([]);
 
@@ -60,6 +65,9 @@ export default function Main({datasets}) {
           responseData={responseData}
           pid={pid}
           datasets={datasets}
+          handleGraphView={handleGraphView}
+          datasetData={datasetData}
+          setMakeGraph={setMakeGraph}
         />
       </div>
     );
