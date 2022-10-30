@@ -56,7 +56,7 @@ export default function DoughnutChart({
     ],
   };
 
-  console.log(data.labels, 'LABELS');
+  // console.log(data.labels, 'LABELS');
 
   return (
     <div>
