@@ -56,7 +56,10 @@ export default function DatasetMain({datasets, resources}) {
                     {/* {resources.map(({format}) => {
                     return (
                       <>
-                        <img className="h-4 w-4 m-2 " src={formatObj[format]} />
+                          <img
+                            className="h-4 w-4 m-2 "
+                            src={formatObj[format]}
+                          />
                       </>
                     );
                   })} */}

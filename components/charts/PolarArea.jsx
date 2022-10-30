@@ -1,29 +1,16 @@
 import {useEffect, useRef} from 'react';
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  RadialLinearScale,
+  ArcElement,
   Tooltip,
-  Filler,
   Legend,
 } from 'chart.js';
-import {Line} from 'react-chartjs-2';
+import { PolarArea } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend
-);
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
-export default function AreaChart({
+export default function PolarAreaChart({
   xAxisLabel,
   yAxisLabel,
   graphLabel,
@@ -84,5 +71,5 @@ export default function AreaChart({
     ],
   };
 
-  return <Line ref={ref} options={options} data={data} className="max-h-96" />;
+  return <PolarArea ref={ref} options={options} data={data} className="max-h-96"/>;
 }

@@ -6,6 +6,10 @@ import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
+import RadarChart from './charts/RadarChart';
+import HorizontalBarChart from './charts/HorizontalBarChart';
+import PolarAreaChart from './charts/PolarArea';
+import LineChart from './charts/LineChart';
 
 export default function Graph({
   displayData,
@@ -58,6 +62,10 @@ export default function Graph({
     'Scatter Chart',
     'Doughnut Chart',
     'Area Chart',
+    'Radar Chart',
+    'Horizontal Bar Chart',
+    'Polar Area Chart',
+    'Line Chart',
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -152,6 +160,76 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+
+    'Radar Chart': {
+      xAxis: 'Label',
+      yAxis: 'Value (Number)',
+      display: (
+        <RadarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
+        />
+      ),
+    },
+
+    'Horizontal Bar Chart': {
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
+      display: (
+        <HorizontalBarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Polar Area Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <PolarAreaChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Line Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <LineChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
@@ -437,21 +515,21 @@ export default function Graph({
             <button
               key={share[0].label}
               onClick={downloadImage}
-              className="px-6 py-5 text-center text-sm font-medium border border-black"
+              className="px-6 py-5 text-center text-sm font-medium"
             >
               <span className="text-gray-600">{share[0].label}</span>
             </button>
 
-
-            <button
-              key={share[1].label}
-              className="px-6 py-5 text-center text-sm font-medium border border-black"
-            >
-              <span className="text-gray-600">{share[1].label}</span>
-            </button>
-          </div>
+          <button
+            key={share[1].label}
+            className="px-6 py-5 text-center text-sm font-medium"
+          >
+            <span className="text-gray-600">{share[1].label}</span>
+          </button>
         </div>
       </div>
+    </div>
     </>
   );
+
 }
