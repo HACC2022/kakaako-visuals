@@ -529,5 +529,7 @@ export default function Graph({
         </div>
       </div>
     </div>
+    </>
   );
+
 }
