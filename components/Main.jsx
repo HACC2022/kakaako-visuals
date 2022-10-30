@@ -51,15 +51,17 @@ export default function Main({datasets}) {
   }, [router.isReady]);
 
   if (!datasets && !router.isReady) {
-    return <Loading />;
+    return;
   } else {
     return (
-      <Table
-        headers={headers}
-        responseData={responseData}
-        pid={pid}
-        datasets={datasets}
-      />
+      <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
+        <Table
+          headers={headers}
+          responseData={responseData}
+          pid={pid}
+          datasets={datasets}
+        />
+      </div>
     );
   }
 }

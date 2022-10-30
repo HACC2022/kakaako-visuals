@@ -1,21 +1,25 @@
-import React from 'react';
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
 import {Doughnut} from 'react-chartjs-2';
+import {useRef, useEffect} from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function DoughnutChart({
-  xAxis,
-  yAxis,
-  displayData,
   xAxisLabel,
   yAxisLabel,
-  graphName,
   graphLabel,
   selectedCheckbox,
+  setDownload,
 }) {
+  let ref = useRef(null);
+
+  //run this function for ANY dependant changes on the graph
+  useEffect(() => {
+    setDownload(ref);
+  }, [yAxisLabel, xAxisLabel, graphLabel]);
+
   const getXArray = selectedCheckbox.map((x) => {
     return x[xAxisLabel];
   });
@@ -24,11 +28,9 @@ export default function DoughnutChart({
     return y[yAxisLabel];
   });
 
-  // console.log(getXArray, '🥶');
-  // console.log(getYArray, '🧶');
   const data = {
     labels: getYArray,
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+
     datasets: [
       {
         label: graphLabel,
@@ -58,7 +60,7 @@ export default function DoughnutChart({
 
   return (
     <div>
-      <Doughnut data={data} className="max-h-96" />
+      <Doughnut ref={ref} data={data} className="max-h-96" />
     </div>
   );
 }

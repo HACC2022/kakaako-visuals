@@ -1,4 +1,5 @@
 import React from 'react';
+import {useRef, useEffect} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,7 +29,24 @@ export default function VerticalBarChart({
   graphName,
   graphLabel,
   selectedCheckbox,
+  setDownload,
+  download,
 }) {
+  let ref = useRef(null);
+
+  //run this function for ANY dependant changes on the graph
+  useEffect(() => {
+    setDownload(ref);
+  }, [
+    xAxis,
+    yAxis,
+    displayData,
+    yAxisLabel,
+    xAxisLabel,
+    graphLabel,
+    graphName,
+  ]);
+
   const getXArray = selectedCheckbox.map((x) => {
     return x[xAxisLabel];
   });
@@ -71,5 +89,5 @@ export default function VerticalBarChart({
     },
   };
 
-  return <Bar options={options} data={data} className="max-h-96" />;
+  return <Bar ref={ref} options={options} data={data} className="max-h-96" />;
 }
