@@ -156,7 +156,7 @@ export default function Graph({
     },
   };
 
-  console.log(chartType);
+  // console.log(chartType);
 
   // populating graph's label option
   useEffect(() => {

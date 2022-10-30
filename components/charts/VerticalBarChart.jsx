@@ -1,5 +1,6 @@
 import React from 'react';
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -46,23 +47,43 @@ export default function VerticalBarChart({
     graphLabel,
     graphName,
   ]);
+  
+  const [getXArray, setGetXArray] = useState([])
+  const [getYArray, setGetYArray] = useState([])
 
-  const getXArray = selectedCheckbox.map((x) => {
-    return x[xAxisLabel];
-  });
-  const getYArray = selectedCheckbox.map((y) => {
-    return y[yAxisLabel];
-  });
+  useEffect(()=>{
+    const cache = {};
+    for (let row of selectedCheckbox){
+      cache[row[xAxisLabel]]? cache[row[xAxisLabel]]+= Number(row[yAxisLabel]) : cache[row[xAxisLabel]] = Number(row[yAxisLabel])
+    }
+    setGetXArray(Object.keys(cache));
+    setGetYArray(Object.values(cache));
+  }, [selectedCheckbox])
+
+  useEffect(()=>{
+    console.log('getXArray',getXArray)
+    console.log('getYArray',getYArray)
+  }, [getXArray])
+
+  // useEffect(()=>{
+    // const getXArray = selectedCheckbox.map((x) => {
+    //   return x[xAxisLabel];
+    // });
+    // const getYArray = selectedCheckbox.map((y) => {
+    //   return y[yAxisLabel];
+    // });
+  // }, [selectedCheckbox])
+
 
   // console.log(getXArray, '🥶');
   // console.log(getYArray, '🧶');
 
   // TODO - Need to resolve issue with re-naming axis not re-rendering state.
 
-  const labels = getXArray;
+  // const labels = getXArray;
 
   const data = {
-    labels,
+    labels: getXArray,
     datasets: [
       {
         label: graphLabel,
@@ -78,12 +99,14 @@ export default function VerticalBarChart({
         title: {
           text: xAxisLabel,
           display: true,
+          // stacked: true
         },
       },
       y: {
         title: {
           text: yAxisLabel,
           display: true,
+          // stacked: true
         },
       },
     },
