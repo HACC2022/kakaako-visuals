@@ -3,7 +3,12 @@ import Table from './table/Table';
 import Loading from './Loading';
 import {useRouter} from 'next/router';
 
-export default function Main({datasets}) {
+export default function Main({
+  datasets,
+  handleGraphView,
+  datasetData,
+  setMakeGraph,
+}) {
   // Where all headers are stored
   const [headers, setHeaders] = useState([]);
 
@@ -51,7 +56,7 @@ export default function Main({datasets}) {
   }, [router.isReady]);
 
   if (!datasets && !router.isReady) {
-    return;
+    return <Loading />;
   } else {
     return (
       <div className="mx-auto  max-w-7xl sm:px-3 lg:px-4">
@@ -60,6 +65,9 @@ export default function Main({datasets}) {
           responseData={responseData}
           pid={pid}
           datasets={datasets}
+          handleGraphView={handleGraphView}
+          datasetData={datasetData}
+          setMakeGraph={setMakeGraph}
         />
       </div>
     );

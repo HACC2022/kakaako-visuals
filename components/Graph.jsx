@@ -20,12 +20,14 @@ export default function Graph({
   yAxisLabel,
   setYAxisLabel,
   setXAxisLabel,
+  handleGraphView,
+  setMakeGraph,
+  datasetData,
 }) {
   // Sort Headers for dropdowns
 
   const sortedHeaders = [...headers].sort();
 
-  // console.log(sortedHeaders);
   //set state for the current graph type
   const [graphType, setGraphType] = useState('');
 
@@ -45,11 +47,11 @@ export default function Graph({
   const [download, setDownload] = useState(null);
 
   const downloadImage = () => {
-    if (download !== null){
-    const link = document.createElement('a');
-    link.download = 'chart.png';
-    link.href = download.current.toBase64Image();
-    link.click();
+    if (download !== null) {
+      const link = document.createElement('a');
+      link.download = 'chart.png';
+      link.href = download.current.toBase64Image();
+      link.click();
     }
   };
 
@@ -234,8 +236,6 @@ export default function Graph({
     },
   };
 
-  console.log(chartType);
-
   // populating graph's label option
   useEffect(() => {
     //make the x and y axis option disappear first
@@ -286,7 +286,6 @@ export default function Graph({
     }
     setYAxisOptions(yAxisLabels);
     if (xAxis !== '') {
-      console.log('xAxis', xAxis);
       const yDropdown = document.getElementById('yOptionsDiv');
       yDropdown.style.display = 'block';
     }
@@ -308,188 +307,203 @@ export default function Graph({
   const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <div>
-      <div className="min-h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
-        {graphType ? chartType[graphType].display : <FillerDiv />}
+    <>
+      <div className="flex justify-between p-2">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">{'hi'}</h1>
+        <button
+          type="button"
+          className="mr-3.5 inline-flex items-center rounded-md border border-transparent bg-red-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          onClick={() => setMakeGraph(false)}
+        >
+          Dataset Info
+        </button>
       </div>
-      <div className="overflow-hidden rounded-lg bg-white shadow my-3">
-        <h2 className="sr-only" id={pid}>
-          {pid}
-        </h2>
-        <div className="bg-white p-6 ">
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <div className="sm:flex sm:space-x-5 ">
-              <div className="flex-shrink-0">
-                <img
-                  className="mx-auto h-20 w-20 rounded-full"
-                  src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
-                  alt="hawaii state crest"
-                />
-              </div>
+      <div>
+        <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+          {graphType ? chartType[graphType].display : <FillerDiv />}
+        </div>
+        <div className="overflow-hidden rounded-lg bg-white shadow my-3">
+          <h2 className="sr-only" id={pid}>
+            {pid}
+          </h2>
 
-              <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left ">
-                <p className="text-xl font-bold text-gray-900 sm:text-2xl">
-                  {pid}
-                </p>
-
-                <div>
-                  <label
-                    htmlFor="graphLabel"
-                    className="block text-base font-medium text-gray-700 mt-2 "
-                  >
-                    Graph Name
-                  </label>
-                  <div className="relative mt-1 rounded-md shadow-sm flex">
-                    <input
-                      type="text"
-                      name="graphLabel"
-                      id="gLabel"
-                      className="block w-full rounded-md border-gray-300 pr-10 py-2 px-2 border border-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="My best graph"
-                      onChange={() => {
-                        setGraphLabel(document.getElementById('gLabel').value);
-                      }}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <QuestionMarkCircleIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </div>
+          <div className="bg-white p-6 ">
+            <div className="sm:flex sm:items-center sm:justify-between">
+              <div className="sm:flex sm:space-x-5 ">
+                <div className="flex-shrink-0">
+                  <img
+                    className="mx-auto h-20 w-20 rounded-full"
+                    src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
+                    alt="hawaii state crest"
+                  />
                 </div>
-                <div className="grid grid-cols-3 py-2 text-left gap-2">
-                  <div className="">
-                    <label
-                      htmlFor="selectGraph"
-                      className="block text-base font-medium text-gray-700 "
-                    >
-                      Graph Type
-                    </label>
 
-                    <select
-                      id="graphType"
-                      name="location"
-                      className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      onChange={() =>
-                        setGraphType(() => {
-                          return document.getElementById('graphType').value;
-                        })
-                      }
-                    >
-                      {typeHTML}
-                    </select>
-                  </div>
-                  {/* X AXIS DROP DOWN OPTIONS */}
-                  <div id="xOptionsDiv">
-                    <label
-                      htmlFor="xAxis"
-                      className="block text-base font-medium text-gray-700 pl-1 "
-                    >
-                      {graphType === 'Vertical Bar Chart' ||
-                      graphType === 'Scatter Chart'
-                        ? 'X-Axis'
-                        : 'Value'}
-                    </label>
+                <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left ">
+                  <p className="text-xl font-bold text-gray-900 sm:text-2xl">
+                    {pid}
+                  </p>
 
-                    <select
-                      id="xOption"
-                      name="xOption"
-                      className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      onChange={() => {
-                        setXAxis(() => {
-                          return document.getElementById('xOption').value;
-                        });
-                      }}
+                  <div>
+                    <label
+                      htmlFor="graphLabel"
+                      className="block text-base font-medium text-gray-700 mt-2 "
                     >
-                      {xAxisOptions}
-                    </select>
-                    {/* X AXIS LABELS OPTION */}
-                    <div>
-                      <div className="flex justify-between">
-                        <label
-                          htmlFor="xAxisLabel"
-                          className="block text-base font-medium text-gray-700"
-                        >
-                          Rename X-Axis
-                        </label>
-                        <span
-                          className="text-sm text-gray-500"
-                          id="email-optional"
-                        >
-                          Optional
-                        </span>
-                      </div>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          id="xLabel"
-                          onChange={() => {
-                            setXAxisLabel(
-                              document.getElementById('xLabel').value
-                            );
-                          }}
-                          name="xLabel"
-                          className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                          placeholder="X-Axis Label"
-                          aria-describedby="email-optional"
+                      Graph Name
+                    </label>
+                    <div className="relative mt-1 rounded-md shadow-sm flex">
+                      <input
+                        type="text"
+                        name="graphLabel"
+                        id="gLabel"
+                        className="block w-full rounded-md border-gray-300 pr-10 py-2 px-2 border border-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="My best graph"
+                        onChange={() => {
+                          setGraphLabel(
+                            document.getElementById('gLabel').value
+                          );
+                        }}
+                      />
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                        <QuestionMarkCircleIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
                         />
                       </div>
                     </div>
                   </div>
-                  {/* Y AXIS DROP DOWN OPTIONS */}
-                  <div id="yOptionsDiv">
-                    <label
-                      htmlFor="yAxis"
-                      className="block text-base font-medium text-gray-700 px-1 "
-                    >
-                      {graphType === 'Vertical Bar Chart' ||
-                      graphType === 'Scatter Chart'
-                        ? 'Y-Axis'
-                        : 'Label'}
-                    </label>
+                  <div className="grid grid-cols-3 py-2 text-left gap-2">
+                    <div className="">
+                      <label
+                        htmlFor="selectGraph"
+                        className="block text-base font-medium text-gray-700 "
+                      >
+                        Graph Type
+                      </label>
 
-                    <select
-                      id="yOption"
-                      name="yOption"
-                      className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      onChange={() => {
-                        setYAxis(() => {
-                          return document.getElementById('yOption').value;
-                        });
-                      }}
-                    >
-                      {yAxisOptions}
-                    </select>
-                    <div>
-                      <div className="flex justify-between">
-                        <label
-                          htmlFor="yAxisLabel"
-                          className="block text-base font-medium text-gray-700"
-                        >
-                          Rename Y-Axis
-                        </label>
-                        <span
-                          className="text-sm text-gray-500"
-                          id="email-optional"
-                        >
-                          Optional
-                        </span>
+                      <select
+                        id="graphType"
+                        name="location"
+                        className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        onChange={() =>
+                          setGraphType(() => {
+                            return document.getElementById('graphType').value;
+                          })
+                        }
+                      >
+                        {typeHTML}
+                      </select>
+                    </div>
+                    {/* X AXIS DROP DOWN OPTIONS */}
+                    <div id="xOptionsDiv">
+                      <label
+                        htmlFor="xAxis"
+                        className="block text-base font-medium text-gray-700 pl-1 "
+                      >
+                        {graphType === 'Vertical Bar Chart' ||
+                        graphType === 'Scatter Chart'
+                          ? 'X-Axis'
+                          : 'Value'}
+                      </label>
+
+                      <select
+                        id="xOption"
+                        name="xOption"
+                        className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        onChange={() => {
+                          setXAxis(() => {
+                            return document.getElementById('xOption').value;
+                          });
+                        }}
+                      >
+                        {xAxisOptions}
+                      </select>
+                      {/* X AXIS LABELS OPTION */}
+                      <div>
+                        <div className="flex justify-between">
+                          <label
+                            htmlFor="xAxisLabel"
+                            className="block text-base font-medium text-gray-700"
+                          >
+                            Rename X-Axis
+                          </label>
+                          <span
+                            className="text-sm text-gray-500"
+                            id="email-optional"
+                          >
+                            Optional
+                          </span>
+                        </div>
+                        <div className="mt-1">
+                          <input
+                            type="text"
+                            id="xLabel"
+                            onChange={() => {
+                              setXAxisLabel(
+                                document.getElementById('xLabel').value
+                              );
+                            }}
+                            name="xLabel"
+                            className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            placeholder="X-Axis Label"
+                            aria-describedby="email-optional"
+                          />
+                        </div>
                       </div>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          id="yLabel"
-                          onChange={() => {
-                            setYAxisLabel(
-                              document.getElementById('yLabel').value
-                            );
-                          }}
-                          name="yLabel"
-                          className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                          placeholder="Y-Axis Label"
-                          aria-describedby="email-optional"
-                        />
+                    </div>
+                    {/* Y AXIS DROP DOWN OPTIONS */}
+                    <div id="yOptionsDiv">
+                      <label
+                        htmlFor="yAxis"
+                        className="block text-base font-medium text-gray-700 px-1 "
+                      >
+                        {graphType === 'Vertical Bar Chart' ||
+                        graphType === 'Scatter Chart'
+                          ? 'Y-Axis'
+                          : 'Label'}
+                      </label>
+
+                      <select
+                        id="yOption"
+                        name="yOption"
+                        className="mt-1 block w-full rounded-md border border-black border-gray-300 py-2 pl-1 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        onChange={() => {
+                          setYAxis(() => {
+                            return document.getElementById('yOption').value;
+                          });
+                        }}
+                      >
+                        {yAxisOptions}
+                      </select>
+                      <div>
+                        <div className="flex justify-between">
+                          <label
+                            htmlFor="yAxisLabel"
+                            className="block text-base font-medium text-gray-700"
+                          >
+                            Rename Y-Axis
+                          </label>
+                          <span
+                            className="text-sm text-gray-500"
+                            id="email-optional"
+                          >
+                            Optional
+                          </span>
+                        </div>
+                        <div className="mt-1">
+                          <input
+                            type="text"
+                            id="yLabel"
+                            onChange={() => {
+                              setYAxisLabel(
+                                document.getElementById('yLabel').value
+                              );
+                            }}
+                            name="yLabel"
+                            className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Y-Axis Label"
+                            aria-describedby="email-optional"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -497,15 +511,14 @@ export default function Graph({
               </div>
             </div>
           </div>
-        </div>
-        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
-          <button
-            key={share[0].label} 
-            onClick = {downloadImage}
-            className="px-6 py-5 text-center text-sm font-medium"
-          >
-            <span className="text-gray-600">{share[0].label}</span>
-          </button>
+          <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
+            <button
+              key={share[0].label}
+              onClick={downloadImage}
+              className="px-6 py-5 text-center text-sm font-medium"
+            >
+              <span className="text-gray-600">{share[0].label}</span>
+            </button>
 
           <button
             key={share[1].label}
