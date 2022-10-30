@@ -8,6 +8,8 @@ import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
 import RadarChart from './charts/RadarChart';
 import HorizontalBarChart from './charts/HorizontalBarChart';
+import PolarAreaChart from './charts/PolarArea';
+import LineChart from './charts/LineChart';
 
 export default function Graph({
   displayData,
@@ -58,6 +60,8 @@ export default function Graph({
     'Area Chart',
     'Radar Chart',
     'Horizontal Bar Chart',
+    'Polar Area Chart',
+    'Line Chart',
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -184,6 +188,40 @@ export default function Graph({
       yAxis: 'Y Axis (Number)',
       display: (
         <HorizontalBarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Polar Area Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <PolarAreaChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Line Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <LineChart
           graphLabel={graphLabel}
           xAxis={xAxis}
           yAxis={yAxis}
