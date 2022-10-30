@@ -13,11 +13,13 @@ export default function Table({
   const [selectedCheckbox, setSelectedCheckbox] = useState([], () => {
     console.log(selectedCheckbox);
   });
+
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
 
   // console.log('response Data', responseData)
   // function to save entire object of element selected by checkbox
+
   function handleSelectedCheckbox(e) {
     const checkedValue = Number(e.target.value);
     // console.log(e.target.checked)
@@ -39,7 +41,34 @@ export default function Table({
         }
       });
     }
+
+    else if (e.target.checked === false){
+      setSelectedCheckbox((prevArray) => {
+        const newArr = [...prevArray]
+        for (let i=0; i<newArr.length; i++){
+          if (newArr[i]._id === checkedValue){
+            newArr.splice(i, 1)
+            return newArr
+          }
+        }
+      })
+    }
   }
+
+  useEffect(()=>{
+    console.log('data passing down to Graph', selectedCheckbox)
+  }, [selectedCheckbox])
+
+  
+  const handleCheckAll = (e) =>{
+    e.target.checked? setSelectedCheckbox(responseData) : setSelectedCheckbox([])
+    const allRows = document.getElementsByName('selectAllHelper')
+    for (let checkbox of allRows){
+      checkbox.checked = e.target.checked;
+    }
+
+  }
+  
 
   useEffect(() => {
     console.log('data passing down to Graph', selectedCheckbox);
