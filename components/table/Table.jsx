@@ -60,14 +60,14 @@ export default function Table({
   }, [selectedCheckbox])
 
   
-  const handleCheckAll = (e) =>{
-    e.target.checked? setSelectedCheckbox(responseData) : setSelectedCheckbox([])
-    const allRows = document.getElementsByName('selectAllHelper')
-    for (let checkbox of allRows){
-      checkbox.checked = e.target.checked;
-    }
+  // const handleCheckAll = (e) =>{
+  //   e.target.checked? setSelectedCheckbox(responseData) : setSelectedCheckbox([])
+  //   const allRows = document.getElementsByName('selectAllHelper')
+  //   for (let checkbox of allRows){
+  //     checkbox.checked = e.target.checked;
+  //   }
 
-  }
+  // }
   
 
   useEffect(() => {
