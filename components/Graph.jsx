@@ -1,11 +1,12 @@
 import ScatterChart from './charts/ScatterChart';
 import VerticalBarChart from './charts/VerticalBarChart';
 import PieChart from './charts/PieChart';
-import {useEffect, useState, useRef, useCallback, createRef} from 'react';
+import {useEffect, useState} from 'react';
 import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
+import GraphHeader from './GraphHeader';
 
 export default function Graph({
   displayData,
@@ -16,12 +17,10 @@ export default function Graph({
   yAxisLabel,
   setYAxisLabel,
   setXAxisLabel,
-  handleGraphView,
   setMakeGraph,
   datasetData,
 }) {
   // Sort Headers for dropdowns
-
   const sortedHeaders = [...headers].sort();
 
   //set state for the current graph type
@@ -30,11 +29,8 @@ export default function Graph({
   //for graphs with x axis and y axis, and labels
   const [xAxisOptions, setXAxisOptions] = useState([]);
   const [xAxis, setXAxis] = useState('');
-  // const [xAxisLabel, setXAxisLabel] = useState('');
-
   const [yAxisOptions, setYAxisOptions] = useState([]);
   const [yAxis, setYAxis] = useState('');
-  // const [yAxisLabel, setYAxisLabel] = useState('');
 
   //State for graph label
   const [graphLabel, setGraphLabel] = useState('');
@@ -158,14 +154,8 @@ export default function Graph({
     },
   };
 
-  // populating graph's label option
+  // populating graph's label options
   useEffect(() => {
-    //make the x and y axis option disappear first
-    // const xDropdown = document.getElementById('xOptionsDiv');
-    // const yDropdown = document.getElementById('yOptionsDiv');
-    // xDropdown.style.display = 'none';
-    // yDropdown.style.display = 'none';
-
     //populate x axis dropdown options;
     const xAxisLabels = [];
     let key = 102;
@@ -230,16 +220,8 @@ export default function Graph({
 
   return (
     <>
-      <div className="flex justify-between p-2">
-        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">{'hi'}</h1>
-        <button
-          type="button"
-          className="mr-3.5 inline-flex items-center rounded-md border border-transparent bg-red-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-          onClick={() => setMakeGraph(false)}
-        >
-          Dataset Info
-        </button>
-      </div>
+      <GraphHeader datasetData={datasetData} setMakeGraph={setMakeGraph} />
+
       <div>
         <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
           {graphType ? chartType[graphType].display : <FillerDiv />}
@@ -252,17 +234,9 @@ export default function Graph({
           <div className="bg-white p-6 ">
             <div className="sm:flex sm:items-center sm:justify-between">
               <div className="sm:flex sm:space-x-5 ">
-                <div className="flex-shrink-0">
-                  <img
-                    className="mx-auto h-20 w-20 rounded-full"
-                    src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
-                    alt="hawaii state crest"
-                  />
-                </div>
-
                 <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left ">
                   <p className="text-xl font-bold text-gray-900 sm:text-2xl">
-                    {pid}
+                    Create your chart
                   </p>
 
                   <div>
@@ -433,11 +407,11 @@ export default function Graph({
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x">
+          <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x gap-2">
             <button
               key={share[0].label}
               onClick={downloadImage}
-              className="px-6 py-5 text-center text-sm font-medium border border-black"
+              className="px-6 py-5 text-center text-sm font-medium"
             >
               <span className="text-gray-600">{share[0].label}</span>
             </button>

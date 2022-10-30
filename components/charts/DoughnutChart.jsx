@@ -56,8 +56,6 @@ export default function DoughnutChart({
     ],
   };
 
-  // console.log(data.labels, 'LABELS');
-
   return (
     <div>
       <Doughnut ref={ref} data={data} className="max-h-96" />

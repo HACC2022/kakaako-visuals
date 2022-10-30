@@ -30,7 +30,6 @@ export default function VerticalBarChart({
   graphLabel,
   selectedCheckbox,
   setDownload,
-  download,
 }) {
   let ref = useRef(null);
 
@@ -54,11 +53,7 @@ export default function VerticalBarChart({
     return y[yAxisLabel];
   });
 
-  // console.log(getXArray, '🥶');
-  // console.log(getYArray, '🧶');
-
   // TODO - Need to resolve issue with re-naming axis not re-rendering state.
-
   const labels = getXArray;
 
   const data = {

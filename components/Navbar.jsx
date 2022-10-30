@@ -1,4 +1,3 @@
-import {Fragment} from 'react';
 import {Disclosure} from '@headlessui/react';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';

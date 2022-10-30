@@ -15,19 +15,10 @@ export default function DatasetPage() {
   const router = useRouter();
   const {pid} = router.query;
 
-  // function handleGraphView() {
-  //   if (makeGraph === false) {
-  //     setMakeGraph(true);
-  //   } else if (makeGraph === true) {
-  //     setMakeGraph(false);
-  //   }
-  // }
-
   useEffect(() => {
     if (datasets) {
       for (let i = 0; i < datasets.length; i++) {
         if (datasets[i].name === pid) {
-          console.log('Here it is, dataset pid', datasets[i]);
           setdatasetData(datasets[i]);
         } else {
           ('Not Found');
@@ -35,10 +26,6 @@ export default function DatasetPage() {
       }
     }
   }, [router.isReady, datasets]);
-
-  // useEffect(() => {
-  //   handleGraphView();
-  // }, [makeGraph]);
 
   if (!datasetData && router.isReady) {
     return <Loading />;
@@ -50,7 +37,6 @@ export default function DatasetPage() {
             datasetData={datasetData}
             makeGraph={makeGraph}
             setMakeGraph={setMakeGraph}
-            // handleGraphView={handleGraphView}
           />
         </div>
       );
@@ -62,7 +48,6 @@ export default function DatasetPage() {
             datasetData={datasetData}
             makeGraph={makeGraph}
             setMakeGraph={setMakeGraph}
-            // handleGraphView={handleGraphView}
           />
         </div>
       );

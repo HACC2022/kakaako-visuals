@@ -54,8 +54,6 @@ export default function PieChart({
     ],
   };
 
-  // console.log(data.labels, 'LABELS');
-
   return (
     <div>
       <Pie ref={ref} data={data} className="max-h-96" />

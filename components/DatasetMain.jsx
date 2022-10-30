@@ -4,20 +4,6 @@ import Pagination from './Pagination';
 import Loading from './Loading';
 import Image from 'next/image';
 
-const formatObj = {
-  CSV: 'https://icons.iconarchive.com/icons/icons8/ios7/256/Files-Csv-icon.png',
-  RDF: 'https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Mimetypes-text-rdf-icon.png',
-  JSON: 'https://icons.iconarchive.com/icons/papirus-team/papirus-mimetypes/256/app-json-icon.png',
-  XML: 'https://icons.iconarchive.com/icons/icons8/ios7/256/Programming-Xml-icon.png',
-  ZIP: 'https://icons.iconarchive.com/icons/pelfusion/flat-file-type/256/zip-icon.png',
-  'ArcGIS GeoServices REST API':
-    'https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/map-marker-icon.png',
-  GeoJSON:
-    'https://icons.iconarchive.com/icons/vectorizeimages/iconpack/512/map-icon.png',
-  HTML: 'https://icons.iconarchive.com/icons/graphics-vibe/developer/256/html-5-icon.png',
-  KML: 'https://icons.iconarchive.com/icons/icons8/windows-8/512/Files-Kml-icon.png',
-};
-
 export default function DatasetMain({datasets, resources}) {
   // Where the pagination will start and stop. Adjusts based on clicking on pagination buttons in Pagination component.
   const [startPagination, setStartPagination] = useState(0);
@@ -52,15 +38,7 @@ export default function DatasetMain({datasets, resources}) {
                       </p>
                     </a>
                   </Link>
-                  <div className="flex">
-                    {/* {resources.map(({format}) => {
-                    return (
-                      <>
-                        <img className="h-4 w-4 m-2 " src={formatObj[format]} />
-                      </>
-                    );
-                  })} */}
-                  </div>
+                  <div className="flex"></div>
                 </div>
               </div>
             ))
