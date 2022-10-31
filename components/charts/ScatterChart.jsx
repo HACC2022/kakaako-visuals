@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect, useState, useRef, useCallback} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -29,53 +29,23 @@ export default function ScatterChart({
   yAxisLabel,
   graphName,
   graphLabel,
-  setDownload
+  setDownload,
 }) {
-
   let ref = useRef(null);
 
   //run this function for ANY dependant changes on the graph
-  useEffect(()=>{
-    setDownload(ref)
-  }, [xAxis, yAxis, displayData, selectedCheckbox, yAxisLabel, xAxisLabel, graphLabel, graphName])
-
-
-  // const downloadImage = useCallback(() => {
-  //   const link = document.createElement('a');
-  //   console.log('reffff current', ref)
-  //   link.download = 'chart.png';
-  //   link.href = ref.current.toBase64Image();
-  //   console.log('LINKKKK', link);
-  //   link.click();
-  // }, []);
-
-  // const getLink = useCallback(() => {
-  //   const base64Link = ref.current.toBase64Image();
-  //   console.log(base64Link);
-  //   const response = fetch(
-  //     `https://api.imgbb.com/1/upload?` +
-  //       new URLSearchParams({
-  //         key: '62d105ee52f40101519e60a2a50c47b6',
-  //         // image: base64Link
-  //         // image: 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg'
-  //       }),
-  //     {
-  //       method: 'POST',
-  //     }
-  //   )
-  //     .then((res) => res.json())
-  //     .then((linkResponse) => {
-  //       console.log(linkResponse.data.url_viewer);
-  //     });
-
-  //   // const options = {
-  //   //   apiKey: '62d105ee52f40101519e60a2a50c47b6',
-  //   //   base64string: base64Link
-  //   // }
-
-  //   // imgbbUploader(options)
-  //   // .then ((response => console.log(response)))
-  // }, []);
+  useEffect(() => {
+    setDownload(ref);
+  }, [
+    xAxis,
+    yAxis,
+    displayData,
+    selectedCheckbox,
+    yAxisLabel,
+    xAxisLabel,
+    graphLabel,
+    graphName,
+  ]);
 
   const [dataMap, setDataMap] = useState([]);
 
@@ -88,7 +58,6 @@ export default function ScatterChart({
       });
     }
     setDataMap(coordinates);
-    // console.log(coordinates);
   }, [yAxis, xAxis, selectedCheckbox]);
 
   const options = {

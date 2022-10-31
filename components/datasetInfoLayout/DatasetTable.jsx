@@ -1,37 +1,36 @@
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  // More people...
-];
-
 export default function DatasetTable({datasetData}) {
   const {author, maintainer, metadata_modified, metadata_created} = datasetData;
-  // const others = Object.keys(datasetData.extras);
 
-  if (datasetData.extras) {
-    console.log(Object.values(datasetData.extras));
-    for (let i = 0; i < datasetData.extras.length; i++) {}
-  }
+  const created = new Date(metadata_created).toLocaleString();
+  const updated = new Date(metadata_modified).toLocaleString();
 
-  const additionalDataArray = [
-    author,
-    maintainer,
-    metadata_modified,
-    metadata_created,
-  ];
+  const {extras} = datasetData;
+  console.log(extras);
 
-  if (datasetData === undefined) {
+  if (extras === undefined) {
     return;
   } else {
     return (
-      <div className="px-1 sm:px-6 lg:px-8">
+      <div className="px-1 sm:px-6 lg:px-8 mb-3">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h3 className="text-l font-bold text-gray-900">Additional Info</h3>
+          </div>
+          <div className="flex flex-col text-center px-4 text-sm">
+            <p className="font-bold">Author</p>
+            <p className="text-sm">{author}</p>
+          </div>
+          <div className="flex flex-col text-center px-4 text-sm">
+            <p className="font-bold text-sm">Maintainer</p>
+            <p className="text-sm">{maintainer}</p>
+          </div>
+          <div className="flex flex-col text-center px-4 text-sm">
+            <p className="font-bold">Created On</p>
+            <p className="text-sm">{created}</p>
+          </div>
+          <div className="flex flex-col text-center px-4 text-sm">
+            <p className="font-bold">Last Update</p>
+            <p className="text-sm">{updated}</p>
           </div>
         </div>
         <div className="mt-4 flex flex-col">
@@ -53,27 +52,17 @@ export default function DatasetTable({datasetData}) {
                       >
                         Value
                       </th>
-                      {/* 
-                    Author 
-                    Maintainer 
-                    Last Updated
-                    Created
-                    Department agency short name
-                    Department/ Agency
-                    DIvision name
-                    division shortname acronym
-                    line of business 
-                    state of hawaii data book
-                    
-                     */}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {additionalDataArray.map((keys, index) => {
+                    {extras.map(({key, value}) => {
                       return (
-                        <tr key={index}>
+                        <tr key={key}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {keys}
+                            {key ? key : 'Nothing Entered'}
+                          </td>
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                            {value ? value : 'Nothing Entered'}
                           </td>
                         </tr>
                       );

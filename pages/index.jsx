@@ -10,7 +10,6 @@ export default function HomePage() {
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data);
     setGroups(data.result);
   }
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function HomePage() {
       </div>
       <ul
         role="list"
-        className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8"
+        className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8 "
       >
         {groups.map((group) => (
           <li
@@ -46,14 +45,14 @@ export default function HomePage() {
           >
             <div className="space-y-6 xl:space-y-10">
               <img
-                className="mx-auto h-40 w-40 rounded-full xl:h-56 xl:w-56"
+                className="mx-auto h-40 w-40  xl:h-40 xl:w-40"
                 src={thumbnails[group]}
                 alt={`${group}'s photo`}
               />
-              <div className="space-y-2 xl:flex xl:items-center xl:justify-between">
-                <div className="space-y-1 text-lg font-medium leading-6">
+              <div className="space-y-2 xl:flex xl:items-center xl:justify-between ">
+                <div className="space-y-1 text-lg font-medium leading-6 ">
                   <Link href={`/groups/${group}`}>
-                    <a className="focus:outline-none">
+                    <a className="focus:outline-none ">
                       <h3 className="text-indigo-600 text-center">
                         {titleEdit(group)}
                       </h3>

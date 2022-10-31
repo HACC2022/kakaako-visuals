@@ -14,15 +14,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function DatasetLayout({
-  datasetData,
-  handleGraphView,
-  setMakeGraph,
-}) {
+export default function DatasetLayout({datasetData, setMakeGraph}) {
   return (
-    <div className="basis-4/5 px-1 ">
+    <div className="basis-4/5 px-1 pt-5">
       <div className="md:flex md:items-center md:justify-between ">
-        <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5">
+        <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5 pl-3">
           {`${datasetData.title}`}
         </h1>
         <div className="mt-3 flex  md:top-3 md:right-0 md:mt-0 ">

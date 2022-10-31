@@ -11,7 +11,7 @@ export default function GroupsIndex() {
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data.result);
+
     setGroups(data.result);
   }
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function GroupsIndex() {
   }
 
   return (
-    <div className=" bg-gray-900 mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
+    <div className=" bg-gray-900 mx-auto max-w-7xl  px-4 sm:px-6 lg:px-8 lg:py-24">
       <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Group Page
@@ -45,7 +45,7 @@ export default function GroupsIndex() {
           >
             <div className="space-y-6 xl:space-y-10">
               <img
-                className="mx-auto h-40 w-40 rounded-full xl:h-40 xl:w-40"
+                className="mx-auto h-40 w-40  xl:h-40 xl:w-40"
                 src={thumbnails[group]}
                 alt={`${group}'s photo`}
               />

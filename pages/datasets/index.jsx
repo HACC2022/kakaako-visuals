@@ -6,7 +6,7 @@ export default function DatasetsIndex() {
   const {datasets} = appContext;
 
   return (
-    <div className="basis-1/5">
+    <div className="">
       <DatasetMain datasets={datasets} />
     </div>
   );

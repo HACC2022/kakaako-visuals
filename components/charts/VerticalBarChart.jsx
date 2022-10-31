@@ -31,7 +31,6 @@ export default function VerticalBarChart({
   graphLabel,
   selectedCheckbox,
   setDownload,
-  download,
 }) {
   let ref = useRef(null);
 
@@ -47,24 +46,25 @@ export default function VerticalBarChart({
     graphLabel,
     graphName,
   ]);
-  
-  const [getXArray, setGetXArray] = useState([])
-  const [getYArray, setGetYArray] = useState([])
 
-  useEffect(()=>{
+  const [getXArray, setGetXArray] = useState([]);
+  const [getYArray, setGetYArray] = useState([]);
+
+  useEffect(() => {
     const cache = {};
-    for (let row of selectedCheckbox){
-      cache[row[xAxisLabel]]? cache[row[xAxisLabel]]+= Number(row[yAxisLabel]) : cache[row[xAxisLabel]] = Number(row[yAxisLabel])
+    for (let row of selectedCheckbox) {
+      cache[row[xAxisLabel]]
+        ? (cache[row[xAxisLabel]] += Number(row[yAxisLabel]))
+        : (cache[row[xAxisLabel]] = Number(row[yAxisLabel]));
     }
     setGetXArray(Object.keys(cache));
     setGetYArray(Object.values(cache));
   }, [selectedCheckbox, xAxis, yAxis])
 
-  useEffect(()=>{
-    console.log('getXArray',getXArray)
-    console.log('getYArray',getYArray)
-  }, [getXArray])
-
+  useEffect(() => {
+    console.log('getXArray', getXArray);
+    console.log('getYArray', getYArray);
+  }, [getXArray]);
 
 
   const data = {
