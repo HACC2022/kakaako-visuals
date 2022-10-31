@@ -19,15 +19,21 @@ const navigation = [
     current: false,
   },
   {name: 'Groups', icon: UsersIcon, href: '/groups', count: 3, current: false},
-  {name: 'Tags', icon: FolderIcon, href: '/tags', count: 4, current: false},
-  {name: 'Formats', icon: CalendarIcon, href: '/formats', current: false},
-  {
-    name: 'Licenses',
-    icon: InboxIcon,
-    href: '/licenses',
-    count: 12,
-    current: false,
-  },
+  // {
+  //   name: 'Organizations',
+  //   icon: UsersIcon,
+  //   href: '/organizations',
+  //   current: false,
+  // },
+  // {name: 'Tags', icon: FolderIcon, href: '/tags', count: 4, current: false},
+  // {name: 'Formats', icon: CalendarIcon, href: '/formats', current: false},
+  // {
+  //   name: 'Licenses',
+  //   icon: InboxIcon,
+  //   href: '/licenses',
+  //   count: 12,
+  //   current: false,
+  // },
 ];
 
 function classNames(...classes) {
@@ -36,11 +42,12 @@ function classNames(...classes) {
 
 export default function Sidebar() {
   return (
-    <div className="flex-shrink-0  flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4 ">
+    <div className="flex-shrink-0 h-full sticky top-0 flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4 ">
       <div className="mt-5 flex flex-grow flex-col mr-5">
         <nav className="flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
           {navigation.map((item) => (
             <a
+              key={item.name}
               className={classNames(
                 item.current
                   ? 'bg-gray-100 text-gray-900'
@@ -58,7 +65,7 @@ export default function Sidebar() {
                 aria-hidden="true"
               />
               <Link key={item.name} href={item.href}>
-                <span className="flex-1 mr-5">{item.name}</span>
+                <span className="flex-1 mr-5 cursor-pointer">{item.name}</span>
               </Link>
             </a>
           ))}

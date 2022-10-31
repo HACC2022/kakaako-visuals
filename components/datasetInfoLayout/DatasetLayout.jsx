@@ -16,7 +16,7 @@ function classNames(...classes) {
 
 export default function DatasetLayout({datasetData, setMakeGraph}) {
   return (
-    <div className="basis-4/5 px-1 ">
+    <div className="basis-4/5 px-1 pt-5">
       <div className="md:flex md:items-center md:justify-between ">
         <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5 pl-3">
           {`${datasetData.title}`}

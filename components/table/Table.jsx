@@ -138,7 +138,7 @@ export default function Table({
 
                 for (let i = 0; i < values.length; i++) {
                   return (
-                    <tr key={`${values[i]} ${index}`}>
+                    <tr key={`${values[index]} ${index}`}>
                       <td
                         key={`td ${values[index]} ${index}`}
                         className="sticky inset-y-0 left-0 bg-white px-4 py-2"
@@ -146,6 +146,7 @@ export default function Table({
                         <label
                           className="sr-only"
                           htmlFor={`Row ${index}`}
+                          key={`label ${values[index]} ${index}`}
                         ></label>
                         <input
                           className="h-5 w-5 rounded border-gray-200"

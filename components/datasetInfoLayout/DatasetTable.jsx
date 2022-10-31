@@ -5,6 +5,7 @@ export default function DatasetTable({datasetData}) {
   const updated = new Date(metadata_modified).toLocaleString();
 
   const {extras} = datasetData;
+  console.log(extras);
 
   if (extras === undefined) {
     return;
@@ -58,10 +59,10 @@ export default function DatasetTable({datasetData}) {
                       return (
                         <tr key={key}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {key}
+                            {key ? key : 'Nothing Entered'}
                           </td>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {value}
+                            {value ? value : 'Nothing Entered'}
                           </td>
                         </tr>
                       );

@@ -14,7 +14,7 @@ export default function DatasetMain({datasets}) {
   } else {
     return (
       <>
-        <div className="flex flex-wrap grid grid-cols-3">
+        <div className="flex flex-wrap grid grid-cols-3 m-3">
           {datasets
             .map(({title, name}) => (
               <div

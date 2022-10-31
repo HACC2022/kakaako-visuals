@@ -407,21 +407,14 @@ export default function Graph({
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-100 sm:grid-cols-2 sm:divide-y-0 sm:divide-x gap-2">
+          <div className="flex ">
             <button
+              type="button"
               key={share[0].label}
               onClick={downloadImage}
-              className="px-6 py-5 text-center text-sm font-medium"
+              className="ml-3 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 m-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              <span className="text-gray-600">{share[0].label}</span>
-            </button>
-
-
-            <button
-              key={share[1].label}
-              className="px-6 py-5 text-center text-sm font-medium border border-black"
-            >
-              <span className="text-gray-600">{share[1].label}</span>
+              <span className="">{share[0].label}</span>
             </button>
           </div>
         </div>
