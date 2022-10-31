@@ -54,7 +54,7 @@ export default function Table({
     return <Loading />;
   } else {
     return (
-      <div className="  rounded-lg border border-4  p-2 m-3">
+      <div className="rounded-lg flex-wrap p-2 m-3">
         <Graph
           displayData={responseData}
           pid={pid}
@@ -70,8 +70,8 @@ export default function Table({
           datasetData={datasetData}
         />
 
-        <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200 text-sm">
+        <div className="overflow-hidden overflow-x-auto overflow-y-auto rounded-lg border border-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 text-sm ">
             <thead className="bg-gray-100">
               <tr key={`top tr`}>
                 <th

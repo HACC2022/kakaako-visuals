@@ -34,7 +34,7 @@ export default function VerticalBarChart({
 }) {
   let ref = useRef(null);
 
-  //run this function for ANY dependant changes on the graph
+  //run this function for ANY dependant changes on the graphs
   useEffect(() => {
     setDownload(ref);
   }, [
@@ -59,13 +59,13 @@ export default function VerticalBarChart({
     }
     setGetXArray(Object.keys(cache));
     setGetYArray(Object.values(cache));
-  }, [selectedCheckbox, xAxis, yAxis])
+  }, [selectedCheckbox, xAxis, yAxis]);
+
 
   useEffect(() => {
     console.log('getXArray', getXArray);
     console.log('getYArray', getYArray);
   }, [getXArray]);
-
 
   const data = {
     labels: getXArray,

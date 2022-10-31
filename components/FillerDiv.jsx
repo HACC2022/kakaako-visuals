@@ -1,7 +1,7 @@
 export default function FillerDiv() {
   return (
     <div className="mx-auto max-w-7xl sm:px-3 lg:px-4">
-      <div className=" w-full h-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+      <div className=" w-full h-full rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         <svg
           className="mx-auto h-20 w-20 text-gray-400"
           xmlns="http://www.w3.org/2000/svg"
