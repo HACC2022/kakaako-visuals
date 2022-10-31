@@ -301,7 +301,7 @@ export default function Graph({
       <GraphHeader datasetData={datasetData} setMakeGraph={setMakeGraph} />
 
       <div>
-        <div className="h-96 border border-black rounded-lg bg-white px-2 py-6 shadow sm:px-6">
+        <div className="h-96 border border-black rounded-lg bg-white px-2 py-0 shadow sm:px-6">
           {graphType ? chartType[graphType].display : <FillerDiv />}
         </div>
         <div className="overflow-hidden rounded-lg bg-white shadow my-3">

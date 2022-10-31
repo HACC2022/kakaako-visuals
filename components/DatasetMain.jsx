@@ -23,7 +23,7 @@ export default function DatasetMain({datasets}) {
               >
                 <div className="flex-shrink-1">
                   <Image
-                    src="/../public/seal.png"
+                    src="/seal.png"
                     width={80}
                     height={80}
                     alt="Hawaii state seal"
