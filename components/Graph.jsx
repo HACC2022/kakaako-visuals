@@ -10,6 +10,7 @@ import RadarChart from './charts/RadarChart';
 import HorizontalBarChart from './charts/HorizontalBarChart';
 import PolarAreaChart from './charts/PolarArea';
 import LineChart from './charts/LineChart';
+import GraphHeader from './GraphHeader';
 
 export default function Graph({
   displayData,
