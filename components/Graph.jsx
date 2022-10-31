@@ -297,7 +297,7 @@ export default function Graph({
   const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <>
+    <div>
       <GraphHeader datasetData={datasetData} setMakeGraph={setMakeGraph} />
 
       <div>
@@ -497,6 +497,6 @@ export default function Graph({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

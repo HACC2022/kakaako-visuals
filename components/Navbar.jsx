@@ -46,10 +46,10 @@ export default function Navbar() {
                   />
                 </div>
                 <h1 className="ml-4 flex items-end text-xl pb-1">
-                  Open Data Hawaii Visualizer
+                  Open Data Hawaii - Visualizer
                 </h1>
               </div>
-              <div className="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
+              {/* <div className="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
                 <div className="w-full sm:max-w-xs">
                   <label htmlFor="search" className="sr-only">
                     Search
@@ -70,7 +70,7 @@ export default function Navbar() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="relative z-10 flex items-center lg:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
