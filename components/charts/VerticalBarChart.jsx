@@ -59,27 +59,12 @@ export default function VerticalBarChart({
     }
     setGetXArray(Object.keys(cache));
     setGetYArray(Object.values(cache));
-  }, [selectedCheckbox]);
+  }, [selectedCheckbox, xAxis, yAxis]);
 
   useEffect(() => {
     console.log('getXArray', getXArray);
     console.log('getYArray', getYArray);
   }, [getXArray]);
-
-  // useEffect(()=>{
-  // const getXArray = selectedCheckbox.map((x) => {
-  //   return x[xAxisLabel];
-  // });
-  // const getYArray = selectedCheckbox.map((y) => {
-  //   return y[yAxisLabel];
-  // });
-  // }, [selectedCheckbox])
-
-  // console.log(getXArray, '🥶');
-  // console.log(getYArray, '🧶');
-
-  // TODO - Need to resolve issue with re-naming axis not re-rendering state.
-  // const labels = getXArray;
 
   const data = {
     labels: getXArray,
