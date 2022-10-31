@@ -54,7 +54,7 @@ export default function Table({
     return <Loading />;
   } else {
     return (
-      <div className="  rounded-lg border border-4  p-2 m-3">
+      <div className="rounded-lg flex-wrap p-2 m-3">
         <Graph
           displayData={responseData}
           pid={pid}

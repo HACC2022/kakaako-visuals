@@ -78,6 +78,11 @@ export default function Graph({
   }
 
   const chartType = {
+    'select': {
+      xAxis: '',
+      yAxis: '',
+      display: (<div></div>)  
+    },
     'Scatter Chart': {
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
@@ -297,7 +302,7 @@ export default function Graph({
   const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <>
+    <div>
       <GraphHeader datasetData={datasetData} setMakeGraph={setMakeGraph} />
 
       <div>
@@ -497,6 +502,6 @@ export default function Graph({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
