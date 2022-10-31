@@ -38,9 +38,7 @@ export default function Table({
     }
   }
 
-  useEffect(() => {
-    console.log('data passing down to Graph', selectedCheckbox);
-  }, [selectedCheckbox]);
+  useEffect(() => {}, [selectedCheckbox]);
 
   const handleCheckAll = (e) => {
     e.target.checked
@@ -56,7 +54,7 @@ export default function Table({
     return <Loading />;
   } else {
     return (
-      <div className=" max-w-10/12 rounded-lg border border-4  p-2 m-3">
+      <div className="  rounded-lg border border-4  p-2 m-3">
         <Graph
           displayData={responseData}
           pid={pid}

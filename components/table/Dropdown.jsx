@@ -7,9 +7,7 @@ export default function Dropdown({headers, selectedColumn, setSelectedColumn}) {
     setSelectedColumn(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(selectedColumn);
-  }, [selectedColumn]);
+  useEffect(() => {}, [selectedColumn]);
 
   return (
     <div className="">
