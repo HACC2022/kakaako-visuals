@@ -22,8 +22,8 @@ export default function DatasetMain({datasets}) {
                 className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
               >
                 <div className="flex-shrink-1">
-                  <Image
-                    src="/../public/seal.png"
+                  <img
+                    src="/seal.png"
                     width={80}
                     height={80}
                     alt="Hawaii state seal"

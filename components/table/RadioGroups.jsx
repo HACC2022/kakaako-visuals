@@ -7,9 +7,7 @@ export default function RadioGroup({selectedGraphType, setSelectedGraphType}) {
     setSelectedGraphType(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(selectedGraphType);
-  }, [selectedGraphType]);
+  useEffect(() => {}, [selectedGraphType]);
   return (
     <div className="pt-3 px-5">
       <label className="text-xl font-medium text-gray-900">

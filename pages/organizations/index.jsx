@@ -12,14 +12,12 @@ export default function OrganizationsIndex() {
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
+
     setOrganization(data.result);
   }
   useEffect(() => {
     fetchData(link);
   }, []);
-
-  console.log(organizations, 'Orgs');
 
   return (
     <>
