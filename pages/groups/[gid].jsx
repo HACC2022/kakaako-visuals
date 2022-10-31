@@ -17,7 +17,7 @@ export default function GroupID() {
       async function fetchData(url) {
         const res = await fetch(url);
         const data = await res.json();
-        // console.log(data.result.results);
+
         setGroups(data.result.results);
       }
       fetchData(link);
@@ -27,7 +27,6 @@ export default function GroupID() {
   if (!router.isReady) {
     return;
   } else {
-    // console.log(groups);
     return (
       <div className="mx-auto max-w-7xl sm:px-3 lg:px-4 ">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">

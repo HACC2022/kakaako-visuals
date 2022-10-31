@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 import Loading from './Loading';
 import Image from 'next/image';
 
-export default function DatasetMain({datasets, resources}) {
+export default function DatasetMain({datasets}) {
   // Where the pagination will start and stop. Adjusts based on clicking on pagination buttons in Pagination component.
   const [startPagination, setStartPagination] = useState(0);
   const [endPagination, setEndPagination] = useState(30);
@@ -13,8 +13,8 @@ export default function DatasetMain({datasets, resources}) {
     return <Loading />;
   } else {
     return (
-      <div className=" basis-4/5 sm:px-3 lg:px-4">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <>
+        <div className="flex flex-wrap grid grid-cols-3">
           {datasets
             .map(({title, name}) => (
               <div
@@ -44,15 +44,16 @@ export default function DatasetMain({datasets, resources}) {
             ))
             .slice(startPagination, endPagination)}
         </div>
-
-        <Pagination
-          startPagination={startPagination}
-          endPagination={endPagination}
-          setStartPagination={setStartPagination}
-          setEndPagination={setEndPagination}
-          datasets={datasets}
-        />
-      </div>
+        <div>
+          <Pagination
+            startPagination={startPagination}
+            endPagination={endPagination}
+            setStartPagination={setStartPagination}
+            setEndPagination={setEndPagination}
+            datasets={datasets}
+          />
+        </div>
+      </>
     );
   }
 }

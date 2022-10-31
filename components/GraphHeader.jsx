@@ -9,7 +9,7 @@ export default function GraphHeader({datasetData, setMakeGraph}) {
           src={`https://health.hawaii.gov/wp-content/themes/hic_state_template_parent/images/og-image.jpg`}
           alt="hawaii state crest"
         />
-        <h1 className="text-2xl font-bold leading-6 text-gray-900 ml-3 flex items-center">
+        <h1 className="text-2xl font-bold leading-6 text-gray-900 ml-3 flex items-center ">
           {datasetData.title}
         </h1>
       </div>
