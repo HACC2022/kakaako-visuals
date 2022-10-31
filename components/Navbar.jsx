@@ -27,7 +27,10 @@ export default function Navbar() {
   const {datasets} = appContext;
 
   return (
-    <Disclosure as="header" className="bg-gray-300 pb-3 ">
+    <Disclosure
+      as="header"
+      className="bg-gradient-to-b from-gray-300 pb-3 mb-5"
+    >
       {({open}) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-700 lg:px-8">

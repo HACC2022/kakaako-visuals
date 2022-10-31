@@ -6,7 +6,10 @@ import FillerDiv from './FillerDiv';
 import {QuestionMarkCircleIcon} from '@heroicons/react/20/solid';
 import DoughnutChart from './charts/DoughnutChart';
 import AreaChart from './charts/AreaChart';
-import GraphHeader from './GraphHeader';
+import RadarChart from './charts/RadarChart';
+import HorizontalBarChart from './charts/HorizontalBarChart';
+import PolarAreaChart from './charts/PolarArea';
+import LineChart from './charts/LineChart';
 
 export default function Graph({
   displayData,
@@ -54,6 +57,10 @@ export default function Graph({
     'Scatter Chart',
     'Doughnut Chart',
     'Area Chart',
+    'Radar Chart',
+    'Horizontal Bar Chart',
+    'Polar Area Chart',
+    'Line Chart',
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -148,6 +155,76 @@ export default function Graph({
           yAxisLabel={yAxisLabel}
           displayData={displayData}
           selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+
+    'Radar Chart': {
+      xAxis: 'Label',
+      yAxis: 'Value (Number)',
+      display: (
+        <RadarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          setDownload={setDownload}
+        />
+      ),
+    },
+
+    'Horizontal Bar Chart': {
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
+      display: (
+        <HorizontalBarChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Polar Area Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <PolarAreaChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
+          setDownload={setDownload}
+        />
+      ),
+    },
+    'Line Chart': {
+      xAxis: 'Value (Number)',
+      yAxis: 'Label',
+      display: (
+        <LineChart
+          graphLabel={graphLabel}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          xAxisLabel={xAxisLabel}
+          yAxisLabel={yAxisLabel}
+          displayData={displayData}
+          selectedCheckbox={selectedCheckbox}
+          download={download}
           setDownload={setDownload}
         />
       ),
