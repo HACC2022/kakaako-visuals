@@ -78,6 +78,11 @@ export default function Graph({
   }
 
   const chartType = {
+    'select': {
+      xAxis: '',
+      yAxis: '',
+      display: (<div></div>)  
+    },
     'Scatter Chart': {
       xAxis: 'X Axis (Number)',
       yAxis: 'Y Axis (Number)',
