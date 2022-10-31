@@ -1,4 +1,3 @@
-import {Fragment} from 'react';
 import {Disclosure} from '@headlessui/react';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
@@ -28,21 +27,27 @@ export default function Navbar() {
   const {datasets} = appContext;
 
   return (
-    <Disclosure as="header" className="bg-gray-300 pb-3 mb-5">
+    <Disclosure
+      as="header"
+      className="bg-gradient-to-b from-gray-300 pb-3 mb-5"
+    >
       {({open}) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-700 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-shrink-0 items-center ">
                   <Image
-                    className="block "
+                    className="block"
                     src="/seal.png"
                     alt="Your Company"
                     height="60"
                     width="60"
                   />
                 </div>
+                <h1 className="ml-4 flex items-end text-xl pb-1">
+                  Open Data Hawaii Visualizer
+                </h1>
               </div>
               <div className="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
                 <div className="w-full sm:max-w-xs">
@@ -83,7 +88,7 @@ export default function Navbar() {
               className="hidden lg:flex lg:space-x-8 lg:py-2"
               aria-label="Global"
             >
-              {navigation.map((item) => (
+              {/* {navigation.map((item) => (
                 <Link
                   href={item.href}
                   key={item.name}
@@ -97,7 +102,7 @@ export default function Navbar() {
                 >
                   {item.name}
                 </Link>
-              ))}
+              ))} */}
             </nav>
           </div>
 

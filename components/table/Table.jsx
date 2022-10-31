@@ -9,21 +9,16 @@ export default function Table({
   datasets,
   handleGraphView,
   setMakeGraph,
+  datasetData,
 }) {
-  const [selectedCheckbox, setSelectedCheckbox] = useState([], () => {
-    console.log(selectedCheckbox);
-  });
-
+  const [selectedCheckbox, setSelectedCheckbox] = useState([], () => {});
   const [xAxisLabel, setXAxisLabel] = useState('');
   const [yAxisLabel, setYAxisLabel] = useState('');
 
-  // console.log('response Data', responseData)
   // function to save entire object of element selected by checkbox
 
   function handleSelectedCheckbox(e) {
     const checkedValue = Number(e.target.value);
-    // console.log(e.target.checked)
-    // console.log('checkvalue: ', checkedValue);
     if (e.target.checked === true) {
       for (let i = 0; i < responseData.length; i++) {
         if (responseData[i]._id === checkedValue) {
@@ -41,34 +36,7 @@ export default function Table({
         }
       });
     }
-
-    else if (e.target.checked === false){
-      setSelectedCheckbox((prevArray) => {
-        const newArr = [...prevArray]
-        for (let i=0; i<newArr.length; i++){
-          if (newArr[i]._id === checkedValue){
-            newArr.splice(i, 1)
-            return newArr
-          }
-        }
-      })
-    }
   }
-
-  useEffect(()=>{
-    console.log('data passing down to Graph', selectedCheckbox)
-  }, [selectedCheckbox])
-
-  
-  const handleCheckAll = (e) =>{
-    e.target.checked? setSelectedCheckbox(responseData) : setSelectedCheckbox([])
-    const allRows = document.getElementsByName('selectAllHelper')
-    for (let checkbox of allRows){
-      checkbox.checked = e.target.checked;
-    }
-
-  }
-  
 
   useEffect(() => {
     console.log('data passing down to Graph', selectedCheckbox);
@@ -101,6 +69,7 @@ export default function Table({
           datasets={datasets}
           handleGraphView={handleGraphView}
           setMakeGraph={setMakeGraph}
+          datasetData={datasetData}
         />
 
         <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
@@ -169,7 +138,7 @@ export default function Table({
 
                 for (let i = 0; i < values.length; i++) {
                   return (
-                    <tr key={`${values[i]} ${index}`}>
+                    <tr key={`${values[index]} ${index}`}>
                       <td
                         key={`td ${values[index]} ${index}`}
                         className="sticky inset-y-0 left-0 bg-white px-4 py-2"
@@ -177,6 +146,7 @@ export default function Table({
                         <label
                           className="sr-only"
                           htmlFor={`Row ${index}`}
+                          key={`label ${values[index]} ${index}`}
                         ></label>
                         <input
                           className="h-5 w-5 rounded border-gray-200"

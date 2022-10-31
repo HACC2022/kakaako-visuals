@@ -1,4 +1,5 @@
-import {useEffect, useRef} from 'react';
+import React from 'react';
+import {useRef, useEffect} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,7 +8,6 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
   Legend,
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
@@ -19,13 +19,16 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Filler,
   Legend
 );
 
-export default function AreaChart({
+export default function LineChart({
+  xAxis,
+  yAxis,
+  displayData,
   xAxisLabel,
   yAxisLabel,
+  graphName,
   graphLabel,
   selectedCheckbox,
   setDownload,
@@ -36,52 +39,56 @@ export default function AreaChart({
   //run this function for ANY dependant changes on the graph
   useEffect(() => {
     setDownload(ref);
-  }, [yAxisLabel, xAxisLabel, graphLabel]);
+  }, [
+    xAxis,
+    yAxis,
+    displayData,
+    yAxisLabel,
+    xAxisLabel,
+    graphLabel,
+    graphName,
+  ]);
 
   const getXArray = selectedCheckbox.map((x) => {
     return x[xAxisLabel];
   });
-
   const getYArray = selectedCheckbox.map((y) => {
     return y[yAxisLabel];
   });
 
-  const labels = getXArray;
+  // console.log(getXArray, '🥶');
+  // console.log(getYArray, '🧶');
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      scales: {
-        x: {
-          title: {
-            text: xAxisLabel,
-            display: true,
-          },
-        },
-        y: {
-          title: {
-            text: yAxisLabel,
-            display: true,
-          },
-        },
-      },
-    },
-  };
+  // TODO - Need to resolve issue with re-naming axis not re-rendering state.
+
+  const labels = getXArray;
 
   const data = {
     labels,
     datasets: [
       {
-        fill: true,
         label: graphLabel,
         data: getYArray,
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        backgroundColor: 'red',
       },
     ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        title: {
+          text: xAxisLabel,
+          display: true,
+        },
+      },
+      y: {
+        title: {
+          text: yAxisLabel,
+          display: true,
+        },
+      },
+    },
   };
 
   return <Line ref={ref} options={options} data={data} className="max-h-96" />;
