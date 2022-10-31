@@ -34,7 +34,7 @@ export default function VerticalBarChart({
 }) {
   let ref = useRef(null);
 
-  //run this function for ANY dependant changes on the graph
+  //run this function for ANY dependant changes on the graphs
   useEffect(() => {
     setDownload(ref);
   }, [
