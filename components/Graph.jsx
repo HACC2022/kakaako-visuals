@@ -82,6 +82,7 @@ export default function Graph({
       xAxis: '',
       yAxis: '',
       display: <div></div>,
+
     },
     'Scatter Chart': {
       xAxis: 'X Axis (Number/Word)',
