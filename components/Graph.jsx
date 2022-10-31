@@ -53,15 +53,15 @@ export default function Graph({
 
   //populate types of graph choices menu
   const types = [
-    'Vertical Bar Chart',
-    'Pie Chart',
-    'Scatter Chart',
-    'Doughnut Chart',
-    'Area Chart',
-    'Radar Chart',
-    'Horizontal Bar Chart',
     'Polar Area Chart',
     'Line Chart',
+    'Pie Chart',
+    'Radar Chart',
+    'Doughnut Chart',
+    'Area Chart',
+    'Horizontal Bar Chart',
+    'Vertical Bar Chart',
+    'Scatter Chart',
   ];
   const typeHTML = [];
   typeHTML.push(
@@ -78,13 +78,13 @@ export default function Graph({
   }
 
   const chartType = {
-    'select': {
+    select: {
       xAxis: '',
       yAxis: '',
-      display: (<div></div>)  
+      display: <div></div>,
     },
     'Scatter Chart': {
-      xAxis: 'X Axis (Number)',
+      xAxis: 'X Axis (Number/Word)',
       yAxis: 'Y Axis (Number)',
       display: (
         <ScatterChart
@@ -101,7 +101,7 @@ export default function Graph({
     },
 
     'Vertical Bar Chart': {
-      xAxis: 'X Axis (Number)',
+      xAxis: 'X Axis (Number/Word)',
       yAxis: 'Y Axis (Number)',
       display: (
         <VerticalBarChart
@@ -117,8 +117,8 @@ export default function Graph({
       ),
     },
     'Pie Chart': {
-      xAxis: 'Value (Number)',
-      yAxis: 'Label',
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number/Word)',
       display: (
         <PieChart
           graphLabel={graphLabel}
@@ -133,8 +133,8 @@ export default function Graph({
       ),
     },
     'Doughnut Chart': {
-      xAxis: 'Value (Number)',
-      yAxis: 'Label',
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number/Word)',
       display: (
         <DoughnutChart
           graphLabel={graphLabel}
@@ -150,8 +150,8 @@ export default function Graph({
     },
 
     'Area Chart': {
-      xAxis: 'Label',
-      yAxis: 'Value (Number)',
+      xAxis: 'X Axis (Number/Word)',
+      yAxis: 'Y Axis (Number)',
       display: (
         <AreaChart
           graphLabel={graphLabel}
@@ -168,8 +168,8 @@ export default function Graph({
     },
 
     'Radar Chart': {
-      xAxis: 'Label',
-      yAxis: 'Value (Number)',
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Word)',
       display: (
         <RadarChart
           graphLabel={graphLabel}
@@ -202,8 +202,8 @@ export default function Graph({
       ),
     },
     'Polar Area Chart': {
-      xAxis: 'Value (Number)',
-      yAxis: 'Label',
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
       display: (
         <PolarAreaChart
           graphLabel={graphLabel}
@@ -219,8 +219,8 @@ export default function Graph({
       ),
     },
     'Line Chart': {
-      xAxis: 'Value (Number)',
-      yAxis: 'Label',
+      xAxis: 'X Axis (Number)',
+      yAxis: 'Y Axis (Number)',
       display: (
         <LineChart
           graphLabel={graphLabel}
@@ -302,11 +302,11 @@ export default function Graph({
   const share = [{label: 'Download'}, {label: 'Share'}];
 
   return (
-    <div>
+    <div className="flex flex-col">
       <GraphHeader datasetData={datasetData} setMakeGraph={setMakeGraph} />
 
       <div>
-        <div className="h-96 border border-black rounded-lg bg-white px-2 py-0 shadow sm:px-6">
+        <div className="h-auto border border-black rounded-lg bg-white px-2 py-0 shadow sm:px-6">
           {graphType ? chartType[graphType].display : <FillerDiv />}
         </div>
         <div className="overflow-hidden rounded-lg bg-white shadow my-3">
@@ -318,7 +318,7 @@ export default function Graph({
             <div className="sm:flex sm:items-center sm:justify-between">
               <div className="sm:flex sm:space-x-5 ">
                 <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left ">
-                  <p className="text-xl font-bold text-gray-900 sm:text-2xl">
+                  <p className="text-l font-bold text-gray-900 sm:text-2xl">
                     Create your chart
                   </p>
 
@@ -378,10 +378,7 @@ export default function Graph({
                         htmlFor="xAxis"
                         className="block text-base font-medium text-gray-700 pl-1 "
                       >
-                        {graphType === 'Vertical Bar Chart' ||
-                        graphType === 'Scatter Chart'
-                          ? 'X-Axis'
-                          : 'Value'}
+                        {graphType ? chartType[graphType].xAxis : 'X-Axis'}
                       </label>
 
                       <select
@@ -397,37 +394,42 @@ export default function Graph({
                         {xAxisOptions}
                       </select>
                       {/* X AXIS LABELS OPTION */}
-                      <div>
-                        <div className="flex justify-between">
-                          <label
-                            htmlFor="xAxisLabel"
-                            className="block text-base font-medium text-gray-700"
-                          >
-                            Rename X-Axis
-                          </label>
-                          <span
-                            className="text-sm text-gray-500"
-                            id="email-optional"
-                          >
-                            Optional
-                          </span>
+                      {graphType === 'Vertical Bar Chart' ||
+                      graphType === 'Scatter Chart' ? (
+                        <div>
+                          <div className="flex justify-between">
+                            <label
+                              htmlFor="xAxisLabel"
+                              className="block text-base font-medium text-gray-700"
+                            >
+                              Rename X-Axis
+                            </label>
+                            <span
+                              className="text-sm text-gray-500"
+                              id="email-optional"
+                            >
+                              Optional
+                            </span>
+                          </div>
+                          <div className="mt-1">
+                            <input
+                              type="text"
+                              id="xLabel"
+                              onChange={() => {
+                                setXAxisLabel(
+                                  document.getElementById('xLabel').value
+                                );
+                              }}
+                              name="xLabel"
+                              className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                              placeholder="Optional"
+                              aria-describedby="optional"
+                            />
+                          </div>
                         </div>
-                        <div className="mt-1">
-                          <input
-                            type="text"
-                            id="xLabel"
-                            onChange={() => {
-                              setXAxisLabel(
-                                document.getElementById('xLabel').value
-                              );
-                            }}
-                            name="xLabel"
-                            className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            placeholder="X-Axis Label"
-                            aria-describedby="email-optional"
-                          />
-                        </div>
-                      </div>
+                      ) : (
+                        ''
+                      )}
                     </div>
                     {/* Y AXIS DROP DOWN OPTIONS */}
                     <div id="yOptionsDiv">
@@ -435,10 +437,7 @@ export default function Graph({
                         htmlFor="yAxis"
                         className="block text-base font-medium text-gray-700 px-1 "
                       >
-                        {graphType === 'Vertical Bar Chart' ||
-                        graphType === 'Scatter Chart'
-                          ? 'Y-Axis'
-                          : 'Label'}
+                        {graphType ? chartType[graphType].yAxis : 'Y-Axis'}
                       </label>
 
                       <select
@@ -454,35 +453,42 @@ export default function Graph({
                         {yAxisOptions}
                       </select>
                       <div>
-                        <div className="flex justify-between">
-                          <label
-                            htmlFor="yAxisLabel"
-                            className="block text-base font-medium text-gray-700"
-                          >
-                            Rename Y-Axis
-                          </label>
-                          <span
-                            className="text-sm text-gray-500"
-                            id="email-optional"
-                          >
-                            Optional
-                          </span>
-                        </div>
-                        <div className="mt-1">
-                          <input
-                            type="text"
-                            id="yLabel"
-                            onChange={() => {
-                              setYAxisLabel(
-                                document.getElementById('yLabel').value
-                              );
-                            }}
-                            name="yLabel"
-                            className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Y-Axis Label"
-                            aria-describedby="email-optional"
-                          />
-                        </div>
+                        {graphType === 'Vertical Bar Chart' ||
+                        graphType === 'Scatter Chart' ? (
+                          <div>
+                            <div className="flex justify-between">
+                              <label
+                                htmlFor="yAxisLabel"
+                                className="block text-base font-medium text-gray-700"
+                              >
+                                Rename Y-Axis
+                              </label>
+                              <span
+                                className="text-sm text-gray-500"
+                                id="optional"
+                              >
+                                Optional
+                              </span>
+                            </div>
+                            <div className="mt-1">
+                              <input
+                                type="text"
+                                id="yLabel"
+                                onChange={() => {
+                                  setYAxisLabel(
+                                    document.getElementById('yLabel').value
+                                  );
+                                }}
+                                name="yLabel"
+                                className="block w-full rounded-md border-gray-300 shadow-sm border border-black  px-1 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                placeholder="Optional"
+                                aria-describedby="optional"
+                              />
+                            </div>
+                          </div>
+                        ) : (
+                          ''
+                        )}
                       </div>
                     </div>
                   </div>
