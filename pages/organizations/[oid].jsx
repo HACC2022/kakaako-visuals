@@ -7,23 +7,24 @@ export default function OrganizationsID() {
   const router = useRouter();
   const {oid} = router.query;
 
-  // const url = `https://opendata.hawaii.gov/api/3/action/package_search?fq=tags:${oid}`;
-  // async function fetchData(url) {
-  //   const res = await fetch(url);
-  //   const data = await res.json();
-  //   console.log(data);
-  //   setOrganization(data.result);
-  // }
-  // useEffect(() => {
-  //   fetchData(url);
-  // }, []);
+  const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=tags:${oid}`;
+  async function fetchData(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
+    setOrganization(data.result);
+  }
+  useEffect(() => {
+    fetchData(link);
+  }, []);
 
-  // console.log(organizations, 'Orgs');
+  console.log(organizations, 'Orgs');
 
   return (
     <>
       <div>
         <h1>Organizations</h1>
+        {console.log(organizations)}
         {/* <ul>
           {organizations.map((id) => {
             return (

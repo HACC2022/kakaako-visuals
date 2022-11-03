@@ -12,6 +12,14 @@ const formatObj = {
     'https://icons.iconarchive.com/icons/vectorizeimages/iconpack/256/map-icon.png',
   HTML: 'https://icons.iconarchive.com/icons/graphics-vibe/developer/256/html-5-icon.png',
   KML: 'https://icons.iconarchive.com/icons/icons8/windows-8/256/Files-Kml-icon.png',
+  'PDF Metadata':
+    'https://upload.wikimedia.org/wikipedia/commons/4/42/Pdf-2127829.png',
+  'OGC WFS':
+    'https://upload.wikimedia.org/wikipedia/commons/4/42/Pdf-2127829.png',
+  'OGC WMS':
+    'https://upload.wikimedia.org/wikipedia/commons/4/42/Pdf-2127829.png',
+  'No Name':
+    'https://upload.wikimedia.org/wikipedia/commons/4/42/Pdf-2127829.png',
 };
 
 export default function DatasetFormats({datasetData}) {

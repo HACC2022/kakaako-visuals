@@ -6,7 +6,7 @@ export default function DatasetsIndex() {
   const {datasets} = appContext;
 
   return (
-    <div className="">
+    <div className="flex flex-col ">
       <DatasetMain datasets={datasets} />
     </div>
   );

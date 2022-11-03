@@ -16,15 +16,15 @@ function classNames(...classes) {
 
 export default function DatasetLayout({datasetData, setMakeGraph}) {
   return (
-    <div className="basis-4/5 px-1 pt-5">
-      <div className="md:flex md:items-center md:justify-between ">
+    <div className="basis-4/5 px-1 pt-5 flex flex-col justify-center ">
+      <div className="flex items-center justify-between ">
         <h1 className="font-bold text-2xl font-medium leading-6 text-gray-900 pb-5 pl-3">
           {`${datasetData.title}`}
         </h1>
-        <div className="mt-3 flex  md:top-3 md:right-0 md:mt-0 ">
+        <div className="mt-3 flex mr-4 flex items-start  ">
           <button
             type="button"
-            className="mr-3.5 inline-flex items-center rounded-md border shrink-0 border-transparent bg-red-600 px-8 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="mr-3.5 inline-flex items-center rounded-md border shrink-0 border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             onClick={() => setMakeGraph(true)}
           >
             Create Graph
@@ -66,7 +66,7 @@ export default function DatasetLayout({datasetData, setMakeGraph}) {
             ))}
           </nav>
         </div>
-        <div>
+        <div className="">
           <DatasetNotes datasetData={datasetData} />
           <DatasetFormats datasetData={datasetData} />
           <DatasetBadges datasetData={datasetData} />

@@ -5,7 +5,7 @@ export default function DatasetTable({datasetData}) {
   const updated = new Date(metadata_modified).toLocaleString();
 
   const {extras} = datasetData;
-  console.log(extras);
+  // console.log(extras);
 
   if (extras === undefined) {
     return;

@@ -14,6 +14,7 @@ export default function Main({
 
   // Storing all returned query data
   const [responseData, setResponseData] = useState([]);
+  // const [id, setId] = useState();
 
   // Using router to create variable for paramaters
   const router = useRouter();
@@ -38,6 +39,7 @@ export default function Main({
         });
 
         // Variable to store the paramaters ID
+
         const id = filterCSV[0].id;
 
         const jsonLink = `https://opendata.hawaii.gov/datastore/odata3.0/${id}?$format=json`;
@@ -56,7 +58,7 @@ export default function Main({
     return <Loading />;
   } else {
     return (
-      <div className="mx-auto  max-w-7xl sm:px-3 lg:px-4">
+      <div className=" max-w-full overflow-none ">
         <Table
           headers={headers}
           responseData={responseData}

@@ -25,14 +25,14 @@ export default function DatasetPage() {
         }
       }
     }
-  }, [router.isReady, datasets]);
+  }, [router.isReady, datasets, pid]);
 
   if (!datasetData && router.isReady) {
     return <Loading />;
   } else {
     if (!makeGraph) {
       return (
-        <div>
+        <div className="w-full">
           <DatasetContainer
             datasetData={datasetData}
             makeGraph={makeGraph}
@@ -42,7 +42,7 @@ export default function DatasetPage() {
       );
     } else {
       return (
-        <div className="sm:px-3 lg:px-4">
+        <div className="w-full">
           <Main
             datasets={datasets}
             datasetData={datasetData}
