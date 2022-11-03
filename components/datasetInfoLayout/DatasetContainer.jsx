@@ -10,7 +10,7 @@ export default function DatasetContainer({
     return <Loading />;
   } else {
     return (
-      <div className="flex flex-row sm:px-1 lg:px-2">
+      <div className="flex flex-row">
         <div className="w-full flex flex-col">
           <DatasetLayout
             datasetData={datasetData}

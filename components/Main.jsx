@@ -52,9 +52,12 @@ export default function Main({
 
       fetchData(link);
     }
-  }, [router.isReady]);
+  }, [router.isReady, pid]);
 
-  if (!datasets && !router.isReady) {
+  // console.log(datasetData, 'dd');
+  // console.log(responseData, 'rd');
+
+  if (!datasetData && !router.isReady) {
     return <Loading />;
   } else {
     return (
