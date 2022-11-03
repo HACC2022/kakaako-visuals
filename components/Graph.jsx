@@ -53,14 +53,14 @@ export default function Graph({
 
   //populate types of graph choices menu
   const types = [
-    'Polar Area Chart',
-    'Line Chart',
     'Pie Chart',
-    'Radar Chart',
     'Doughnut Chart',
     'Area Chart',
-    'Horizontal Bar Chart',
+    'Radar Chart',
+    'Polar Area Chart',
+    'Line Chart',
     'Vertical Bar Chart',
+    'Horizontal Bar Chart',
     'Scatter Chart',
   ];
   const typeHTML = [];

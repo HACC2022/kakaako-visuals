@@ -8,7 +8,7 @@ export default function MyApp({Component, pageProps}) {
     <AppWrapper>
       <Layout>
         <div className="flex flex-row">
-          <div className="w-1/6 flex-0">
+          <div className="min-w-1/6 flex-shrink-0">
             <Sidebar />
           </div>
           <div className="w-5/6 flex justify-center">
