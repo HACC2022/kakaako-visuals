@@ -42,7 +42,7 @@ function classNames(...classes) {
 
 export default function Sidebar() {
   return (
-    <div className="flex-shrink-0 h-full sticky top-0 flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4 ">
+    <div className="flex-shrink-0 h-full sticky top-0 flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4 ml-5">
       <div className="mt-5 flex flex-grow flex-col mr-5">
         <nav className="flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
           {navigation.map((item) => (

@@ -61,6 +61,7 @@ export default function VerticalBarChart({
     setGetYArray(Object.values(cache));
   }, [selectedCheckbox, xAxis, yAxis]);
 
+
   useEffect(() => {
     console.log('getXArray', getXArray);
     console.log('getYArray', getYArray);

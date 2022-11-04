@@ -7,8 +7,8 @@ export default function OrganizationsIndex() {
   const router = useRouter();
   const {oid} = router.query;
 
-  // const url = `https://opendata.hawaii.gov/api/3/action/organization_list`;
-  const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=${oid}&rows=1000&start=0`;
+  const link = `https://opendata.hawaii.gov/api/3/action/organization_list`;
+  // const link = `https://opendata.hawaii.gov/api/3/action/package_search?fq=${oid}&rows=1000&start=0`;
   async function fetchData(url) {
     const res = await fetch(url);
     const data = await res.json();
@@ -23,6 +23,7 @@ export default function OrganizationsIndex() {
     <>
       <div>
         <h1>Organizations</h1>
+        {console.log(organizations)}
         {/* <ul>
           {organizations.map((id) => {
             return (

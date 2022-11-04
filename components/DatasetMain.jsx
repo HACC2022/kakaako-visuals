@@ -14,7 +14,7 @@ export default function DatasetMain({datasets}) {
   } else {
     return (
       <>
-        <div className="flex flex-wrap grid grid-cols-3 m-3">
+        <div className="flex flex-wrap grid grid-cols-3 m-3 gap-2">
           {datasets
             .map(({title, name}) => (
               <div
@@ -29,7 +29,7 @@ export default function DatasetMain({datasets}) {
                     alt="Hawaii state seal"
                   />
                 </div>
-                <div className="min-w-0 flex-1 flex-wrap">
+                <div className="min-w-5 flex-1 flex-wrap overflow-hidden">
                   <Link href={`/datasets/${name}`}>
                     <a className="focus:outline-none">
                       <span className="absolute inset-0" aria-hidden="true" />
